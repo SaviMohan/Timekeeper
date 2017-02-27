@@ -1,5 +1,7 @@
 https://msdn.microsoft.com/en-us/library/jj153219.aspx
 
+https://msdn.microsoft.com/en-us/library/zt39148a(v=vs.110).aspx?cs-save-lang=1&cs-lang=csharp#code-snippet-1
+
 http://stackoverflow.com/questions/1115048/is-there-a-tool-to-gather-win32-application-usage-statistics?noredirect=1&lq=1
 
 http://stackoverflow.com/questions/2441420/usage-tracking-for-windows-desktop-applications?noredirect=1&lq=1
