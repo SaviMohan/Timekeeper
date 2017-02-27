@@ -14,9 +14,19 @@ namespace WindowsTimeService
     public partial class WindowsTimeService : ServiceBase
     {
 
-        public WindowsTimeService()
+        public WindowsTimeService(string[] args)
         {
             InitializeComponent();
+
+            string eventSourceName = "MySource";
+            string logName = "MyNewLog";
+            if (args.Count() > 0) {
+                eventSourceName = args[0];
+            }
+            if (args.Count() > 1) {
+                logName = args[1];
+            }
+
             eventLog1 = new System.Diagnostics.EventLog();
             if (!System.Diagnostics.EventLog.SourceExists("MySource"))
             {

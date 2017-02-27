@@ -12,12 +12,12 @@ namespace WindowsTimeService
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        static void Main()
+        static void Main(string[] args)
         {
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
-                new WindowsTimeService()
+                new WindowsTimeService(args)
             };
             ServiceBase.Run(ServicesToRun);
         }
