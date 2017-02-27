@@ -1,1 +1,6 @@
 https://msdn.microsoft.com/en-us/library/jj153219.aspx
+
+http://stackoverflow.com/questions/1115048/is-there-a-tool-to-gather-win32-application-usage-statistics?noredirect=1&lq=1
+
+http://stackoverflow.com/questions/2441420/usage-tracking-for-windows-desktop-applications?noredirect=1&lq=1
+
