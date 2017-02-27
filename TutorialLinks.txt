@@ -6,3 +6,7 @@ http://stackoverflow.com/questions/1115048/is-there-a-tool-to-gather-win32-appli
 
 http://stackoverflow.com/questions/2441420/usage-tracking-for-windows-desktop-applications?noredirect=1&lq=1
 
+http://stackoverflow.com/questions/1040434/how-to-track-application-usage-2
+
+http://stackoverflow.com/questions/1034967/how-to-track-application-usage
+
