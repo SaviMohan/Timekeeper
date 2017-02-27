@@ -3,6 +3,7 @@ Designed for medium to large sized corporations who employ workers that do most 
 An application installed on windows, that starts with windows, and exists solely in the background (system tray only)
 
 Boss has access to a website and/or mobile app (Xamarin?)
+Boss sees graphs, tables, ranks, lists, lots of analysis
 
 Excellent and intuitive UI (prepare comparison images for questions)
 
