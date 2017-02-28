@@ -47,7 +47,7 @@ namespace WindowsTimeService
 
             eventLog1.WriteEntry("In OnStart");
             System.Timers.Timer timer = new System.Timers.Timer();
-            timer.Interval = 60000; // 60 seconds  
+            timer.Interval = 10000; // 10 seconds  
             timer.Elapsed += new System.Timers.ElapsedEventHandler(this.OnTimer);
             timer.Start();
 
