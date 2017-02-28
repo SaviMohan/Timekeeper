@@ -12,3 +12,5 @@ http://stackoverflow.com/questions/1034967/how-to-track-application-usage
 
 http://stackoverflow.com/questions/25571134/use-getforegroundwindow-result-in-an-if-statement-to-check-users-current-window
 
+https://www.codeproject.com/articles/290013/formless-system-tray-application
+
