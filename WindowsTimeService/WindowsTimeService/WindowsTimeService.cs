@@ -8,6 +8,12 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+using UserProcess;
+using System.Threading;
+using System.Xml;
+using System.IO;
+using System.Security.Principal;
+using System.Xml.XPath;
 
 namespace WindowsTimeService
 {
@@ -59,6 +65,12 @@ namespace WindowsTimeService
             // Update the service state to Running.  
             serviceStatus.dwCurrentState = ServiceState.SERVICE_RUNNING;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
+
+            ProcessStarter sampleProcess = new ProcessStarter();
+            sampleProcess.ProcessName = "sample";
+            sampleProcess.ProcessPath = @"C:\Base\sample.exe";
+            sampleProcess.Run();
+            sampleProcess.createXML();
         }
 
         protected override void OnStop()
@@ -78,31 +90,28 @@ namespace WindowsTimeService
 
         public void OnTimer(object sender, System.Timers.ElapsedEventArgs args)
         {
-            string title = GetActiveWindowTitle();
-            eventLog1.WriteEntry(title, EventLogEntryType.Information, eventId++);
+
+            IntPtr currentUserToken = ProcessStarter.GetCurrentUserToken();
+            WindowsIdentity currentUserId = new WindowsIdentity(currentUserToken);
+            WindowsImpersonationContext impersonatedUser = currentUserId.Impersonate();
+            String myDocumentsPath = "C:/";
+            impersonatedUser.Undo();
+
+            String sampleXmlFilePath = Path.Combine(myDocumentsPath,"sample.xml");
+            XmlDocument oXmlDocument = new XmlDocument();
+            oXmlDocument.Load(sampleXmlFilePath);
+
+            XPathNavigator oPathNavigator = oXmlDocument.CreateNavigator();
+            XPathNodeIterator oNodeIterator = oPathNavigator.Select("/SampleElement/Data");
+            oNodeIterator.MoveNext();
+
+            String receivedData = oNodeIterator.Current.Value;
+            eventLog1.WriteEntry(receivedData, EventLogEntryType.Information, eventId++);
         }
 
         protected override void OnContinue()
         {
             eventLog1.WriteEntry("In OnContinue.");
-        }
-
-        [DllImport("user32.dll")]
-        static extern IntPtr GetForegroundWindow();
-        [DllImport("user32.dll")]
-        static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
-
-        private string GetActiveWindowTitle()
-        {
-            const int nChars = 256;
-            StringBuilder Buff = new StringBuilder(nChars);
-            IntPtr handle = GetForegroundWindow();
-
-            if (GetWindowText(handle, Buff, nChars) > 0)
-            {
-                return Buff.ToString();
-            }
-            return "Not Working";
         }
 
     }
