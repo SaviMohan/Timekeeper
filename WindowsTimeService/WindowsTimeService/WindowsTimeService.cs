@@ -37,6 +37,11 @@ namespace WindowsTimeService
             eventLog1.Log = "MyNewLog";
         }
 
+        [DllImport("advapi32.dll", SetLastError = true)]
+        private static extern bool SetServiceStatus(IntPtr handle, ref ServiceStatus serviceStatus);
+
+        private static int eventId = 0;
+
         protected override void OnStart(string[] args)
         {
             // Update the service state to Start Pending.  
@@ -73,13 +78,32 @@ namespace WindowsTimeService
 
         public void OnTimer(object sender, System.Timers.ElapsedEventArgs args)
         {
-            // TODO: Insert monitoring activities here.  
-            eventLog1.WriteEntry("Monitoring the System", EventLogEntryType.Information, eventId++);
+            string title = GetActiveWindowTitle();
+            eventLog1.WriteEntry(title, EventLogEntryType.Information, eventId++);
         }
 
         protected override void OnContinue()
         {
             eventLog1.WriteEntry("In OnContinue.");
         }
+
+        [DllImport("user32.dll")]
+        static extern IntPtr GetForegroundWindow();
+        [DllImport("user32.dll")]
+        static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
+
+        private string GetActiveWindowTitle()
+        {
+            const int nChars = 256;
+            StringBuilder Buff = new StringBuilder(nChars);
+            IntPtr handle = GetForegroundWindow();
+
+            if (GetWindowText(handle, Buff, nChars) > 0)
+            {
+                return Buff.ToString();
+            }
+            return "Not Working";
+        }
+
     }
 }

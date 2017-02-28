@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace WindowsTimeService
 {
@@ -66,11 +68,8 @@ namespace WindowsTimeService
             public long dwServiceSpecificExitCode;
             public long dwCheckPoint;
             public long dwWaitHint;
-        };
-
-        [DllImport("advapi32.dll", SetLastError = true)]
-        private static extern bool SetServiceStatus(IntPtr handle, ref ServiceStatus serviceStatus);
-
-        private static int eventId = 0;
+        }
+        
     }
 }
+;
