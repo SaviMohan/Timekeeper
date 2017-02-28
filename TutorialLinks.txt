@@ -10,3 +10,5 @@ http://stackoverflow.com/questions/1040434/how-to-track-application-usage-2
 
 http://stackoverflow.com/questions/1034967/how-to-track-application-usage
 
+http://stackoverflow.com/questions/25571134/use-getforegroundwindow-result-in-an-if-statement-to-check-users-current-window
+
