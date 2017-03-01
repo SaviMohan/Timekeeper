@@ -14,3 +14,5 @@ http://stackoverflow.com/questions/25571134/use-getforegroundwindow-result-in-an
 
 https://www.codeproject.com/articles/290013/formless-system-tray-application
 
+http://g2pc1.bu.edu/~qzpeng/manual/MySQL%20Commands.htm
+
