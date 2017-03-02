@@ -5,6 +5,7 @@ using System.Timers;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace SystemTrayApp
 {
@@ -57,8 +58,16 @@ namespace SystemTrayApp
         private void OnTimedEvent(object source, ElapsedEventArgs e)
         {
             string title = GetActiveWindowTitle();
-            System.Diagnostics.Debug.WriteLine(title);
-            titles.Add(title);
+            string titleShort = title;
+            if (title.Length > 50)
+            {
+                int difference = title.Length - 50;
+                titleShort = title.Substring(0, 25) + " / " + title.Substring(title.Length-25, 25);
+            }
+            Data newData = new Data(titleShort, 001, 001);
+            string json = JsonConvert.SerializeObject(newData);
+            System.Diagnostics.Debug.WriteLine(json);
+            titles.Add(json);
         }
 
         private void OnTimedEventTwo(object source, ElapsedEventArgs e)
