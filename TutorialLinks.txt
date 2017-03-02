@@ -1,18 +1,16 @@
-https://msdn.microsoft.com/en-us/library/jj153219.aspx
-
-https://msdn.microsoft.com/en-us/library/zt39148a(v=vs.110).aspx?cs-save-lang=1&cs-lang=csharp#code-snippet-1
-
-http://stackoverflow.com/questions/1115048/is-there-a-tool-to-gather-win32-application-usage-statistics?noredirect=1&lq=1
-
-http://stackoverflow.com/questions/2441420/usage-tracking-for-windows-desktop-applications?noredirect=1&lq=1
-
-http://stackoverflow.com/questions/1040434/how-to-track-application-usage-2
-
-http://stackoverflow.com/questions/1034967/how-to-track-application-usage
-
+Get Foreground Window:
 http://stackoverflow.com/questions/25571134/use-getforegroundwindow-result-in-an-if-statement-to-check-users-current-window
 
+Create the System Tray Application:
 https://www.codeproject.com/articles/290013/formless-system-tray-application
 
+MySQL Commands:
 http://g2pc1.bu.edu/~qzpeng/manual/MySQL%20Commands.htm
+
+Insert and Display from MySQL Database:
+https://code.msdn.microsoft.com/windowsdesktop/InsertUpdateDeleteDisplay-26926e70
+
+Setting up a Xamarin App:
+https://msdn.microsoft.com/en-us/library/dn879698.aspx
+
 
