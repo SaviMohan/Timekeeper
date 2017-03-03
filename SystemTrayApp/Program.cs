@@ -57,6 +57,10 @@ namespace SystemTrayApp
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
         {
+            if (Properties.Settings.Default.companyID < 100 || Properties.Settings.Default.userID < 100)
+            {
+                return;
+            }
             string title = GetActiveWindowTitle();
             title = title.Replace("\"", "").Replace("'", "");
             string titleShort = title;
@@ -65,7 +69,7 @@ namespace SystemTrayApp
                 int difference = title.Length - 50;
                 titleShort = title.Substring(0, 50) + " / " + title.Substring(title.Length-50, 50);
             }
-            Data newData = new Data(titleShort, 001, 001);
+            Data newData = new Data(titleShort, Properties.Settings.Default.companyID, Properties.Settings.Default.userID);
             string json = JsonConvert.SerializeObject(newData);
             System.Diagnostics.Debug.WriteLine(json);
             titles.Add(json);

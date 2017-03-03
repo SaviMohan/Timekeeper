@@ -47,9 +47,9 @@
             // 
             this.label2.Location = new System.Drawing.Point(3, 75);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(106, 22);
+            this.label2.Size = new System.Drawing.Size(241, 22);
             this.label2.TabIndex = 21;
-            this.label2.Text = "Company ID";
+            this.label2.Text = "Company ID:";
             // 
             // textBox1
             // 
@@ -67,7 +67,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(238, 17);
             this.label1.TabIndex = 20;
-            this.label1.Text = "User ID";
+            this.label1.Text = "User ID:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel
@@ -98,8 +98,9 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(241, 30);
             this.button1.TabIndex = 22;
-            this.button1.Text = "button1";
+            this.button1.Text = "OK";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // OptionBox
             // 
