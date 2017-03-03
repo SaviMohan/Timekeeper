@@ -6,17 +6,12 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace SystemTrayApp
 {
-	/// <summary>
-	/// 
-	/// </summary>
 	static class Program
 	{
-		/// <summary>
-		/// The main entry point for the application.
-		/// </summary>
 		[STAThread]
 		static void Main()
 		{
@@ -36,6 +31,12 @@ namespace SystemTrayApp
 
     class Sync : ApplicationContext
     {
+        [DllImport("user32.dll")]
+        static extern IntPtr GetForegroundWindow();
+        [DllImport("user32.dll")]
+        static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
+        [DllImport("user32.dll")]
+        static extern int GetWindowThreadProcessId(IntPtr hWnd, IntPtr ProcessId);
 
         private List<string> titles = new List<string>();
 
@@ -51,18 +52,18 @@ namespace SystemTrayApp
             bTimer.Interval = 30000;
             bTimer.Enabled = true;      
 
-            System.Diagnostics.Debug.WriteLine("Timers started");
-       
+            System.Diagnostics.Debug.WriteLine("Timers started");     
         }
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
         {
             string title = GetActiveWindowTitle();
+            title = title.Replace("\"", "").Replace("'", "");
             string titleShort = title;
             if (title.Length > 50)
             {
                 int difference = title.Length - 50;
-                titleShort = title.Substring(0, 25) + " / " + title.Substring(title.Length-25, 25);
+                titleShort = title.Substring(0, 50) + " / " + title.Substring(title.Length-50, 50);
             }
             Data newData = new Data(titleShort, 001, 001);
             string json = JsonConvert.SerializeObject(newData);
@@ -74,20 +75,23 @@ namespace SystemTrayApp
         {
             updateDB();
         }
-
-        [DllImport("user32.dll")]
-        static extern IntPtr GetForegroundWindow();
-        [DllImport("user32.dll")]
-        static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
-
+        
         private static string GetActiveWindowTitle()
         {
             const int nChars = 256;
             StringBuilder Buff = new StringBuilder(nChars);
             IntPtr handle = GetForegroundWindow();
 
+            IntPtr processID = Marshal.AllocHGlobal(100);
+            GetWindowThreadProcessId(handle, processID);
+            Process mainProcess = Process.GetProcessById(Marshal.ReadInt32(processID));
+            
             if (GetWindowText(handle, Buff, nChars) > 0)
             {
+                if (mainProcess.MainModule.ModuleName == "Explorer.EXE")
+                {
+                    return Buff.ToString() + " - Windows Explorer";
+                }
                 return Buff.ToString();
             }
             return "Nothing Detected";
@@ -100,7 +104,7 @@ namespace SystemTrayApp
             int len = titles.Count;
             for (int i=0;i<len;i++)
             {
-                string query = "INSERT INTO timekeeperdata.test2(test_titles) VALUES('" + titles[0] + "');";
+                string query = "INSERT INTO timekeeperdata.test3(data) VALUES('" + titles[0] + "');";
                 MySqlConnection conDatabase = new MySqlConnection(constring);
                 MySqlCommand cmdDatabase = new MySqlCommand(query, conDatabase);
                 MySqlDataReader myReader;
@@ -112,7 +116,6 @@ namespace SystemTrayApp
                     System.Diagnostics.Debug.WriteLine("SAVED");
                     while (myReader.Read())
                     {
-
                     }
                 }
                 catch (Exception ex)
@@ -123,9 +126,7 @@ namespace SystemTrayApp
                 titles.RemoveAt(0);        
                 cmdDatabase.Connection.Close();
                 conDatabase.Close();
-            }
-            
+            }          
         }
-
     }
 }
