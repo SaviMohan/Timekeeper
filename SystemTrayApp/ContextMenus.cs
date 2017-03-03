@@ -65,7 +65,7 @@ namespace SystemTrayApp
             if (!isOptionsLoaded)
             {
                 isOptionsLoaded = true;
-                string promptValue = new OptionBox().ShowDialog("Test", "123");
+                new OptionBox().ShowDialog();
                 isOptionsLoaded = false;
             }
         }

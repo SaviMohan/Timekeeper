@@ -9,9 +9,7 @@ namespace SystemTrayApp
         public OptionBox()
         {
             InitializeComponent();
-            this.Text = String.Format("About {0}", AssemblyTitle);
-            this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
+            this.Text = String.Format("{0} Options", AssemblyTitle);
         }
 
         #region Assembly Attribute Accessors
@@ -93,10 +91,5 @@ namespace SystemTrayApp
             }
         }
         #endregion
-
-        private void labelVersion_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
