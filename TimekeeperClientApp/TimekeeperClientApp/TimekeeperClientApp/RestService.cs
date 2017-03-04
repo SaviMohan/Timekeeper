@@ -21,21 +21,45 @@ namespace TimekeeperClientApp
 
         public async Task<List<Data>> RefreshDataAsync()
         {
-            System.Diagnostics.Debug.WriteLine("Hi");
-            List<Data> Items = new List<Data>();
-
+            List<Data> items = new List<Data>();
             var response = await client.GetAsync("http://timekeeperapi.azurewebsites.net/api.php/test3");
             if (response.IsSuccessStatusCode)
             {
-                var content = await response.Content.ReadAsStringAsync();                       
-                System.Diagnostics.Debug.WriteLine(content);
-                //Items = JsonConvert.DeserializeObject<List<Data>>(content);
-            } else
+                string content = await response.Content.ReadAsStringAsync();
+                items = extractData(content);
+            }
+            else
             {
                 System.Diagnostics.Debug.WriteLine(response);
-                System.Diagnostics.Debug.WriteLine("Bye");
             }   
-            return Items;
+            return items;
+        }
+
+        private List<Data> extractData(string content)
+        {
+            int startPos;
+            int length;
+            string subString;
+            Data myData;
+            List<Data> dataList = new List<Data>();
+            content = content.Remove(0, 48);
+            while (true)
+            {
+                if (content.IndexOf('{') != -1)
+                {
+                    startPos = content.IndexOf('{');
+                    length = content.IndexOf('}') - startPos + 1;
+                    subString = content.Substring(startPos, length);
+                    subString = subString.Replace("\\", "");
+                    myData = JsonConvert.DeserializeObject<Data>(subString);
+                    dataList.Add(myData);
+                    content = content.Remove(startPos, length);
+                } else
+                {
+                    break;
+                }      
+            }
+            return dataList;
         }
     }
 }

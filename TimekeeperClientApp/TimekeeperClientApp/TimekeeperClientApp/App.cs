@@ -7,6 +7,8 @@ namespace TimekeeperClientApp
 {
     public class App : Application
     {
+        private List<Data> data = new List<Data>();
+
         public App()
         {
             // The root page of your application
@@ -43,36 +45,15 @@ namespace TimekeeperClientApp
         {
             // Handle when your app resumes
         }
-        /*
-        private void updateData()
-        {        
-            try
-            {
-                string MyConnection2 = "datasource=localhost;port=3307;username=root;password=root";
-                string Query = "select * from student.studentinfo;";
-                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
-                MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-                MyConn2.Open(); 
 
-                //For offline connection we will use  MySqlDataAdapter class. 
-                MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
-                MyAdapter.SelectCommand = MyCommand2;
-                DataTable dTable = new DataTable();
-                MyAdapter.Fill(dTable);
-
-                //dataGridView1.DataSource = dTable; 
-                MyConn2.Close();
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            }
-        }    
-        */
-        private void updateData()
+        private async void updateData()
         {
             RestService myService = new RestService();
-            myService.RefreshDataAsync();
+            data = await myService.RefreshDataAsync();
+            foreach (Data item in data)
+            {
+                System.Diagnostics.Debug.WriteLine(item.ToString());
+            }
         }
     }
 }
