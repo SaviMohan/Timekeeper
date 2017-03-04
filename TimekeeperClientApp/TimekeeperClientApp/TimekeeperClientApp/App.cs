@@ -1,6 +1,7 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
 using Xamarin.Forms;
+using System.Collections.Generic;
 
 namespace TimekeeperClientApp
 {
@@ -30,6 +31,7 @@ namespace TimekeeperClientApp
         protected override void OnStart()
         {
             // Handle when your app starts
+            updateData();
         }
 
         protected override void OnSleep()
@@ -41,7 +43,7 @@ namespace TimekeeperClientApp
         {
             // Handle when your app resumes
         }
-        
+        /*
         private void updateData()
         {        
             try
@@ -66,6 +68,11 @@ namespace TimekeeperClientApp
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }    
-        
+        */
+        private void updateData()
+        {
+            RestService myService = new RestService();
+            myService.RefreshDataAsync();
+        }
     }
 }
