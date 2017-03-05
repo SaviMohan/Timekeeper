@@ -18,7 +18,7 @@ namespace SystemTrayApp
         public Data(string title, int company, int user)
         {
             windowTitle = title;
-            time = DateTime.Today;
+            time = DateTime.Now;
             companyID = company;
             userID = user;
             dataID = ++baseDataID;

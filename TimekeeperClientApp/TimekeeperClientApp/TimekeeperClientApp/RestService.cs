@@ -41,8 +41,9 @@ namespace TimekeeperClientApp
             int length;
             string subString;
             Data myData;
-            List<Data> dataList = new List<Data>();
-            content = content.Remove(0, 48);
+            List<Data> dataList = new List<Data>();       
+            content = content.Remove(0, content.IndexOf("records"));
+
             while (true)
             {
                 if (content.IndexOf('{') != -1)

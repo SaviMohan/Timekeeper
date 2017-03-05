@@ -66,8 +66,8 @@ namespace SystemTrayApp
             string titleShort = title;
             if (title.Length > 50)
             {
-                int difference = title.Length - 50;
-                titleShort = title.Substring(0, 50) + " / " + title.Substring(title.Length-50, 50);
+                int difference = title.Length - 46;
+                titleShort = title.Substring(0, 46) + " / " + title.Substring(title.Length-46, 46);
             }
             Data newData = new Data(titleShort, Properties.Settings.Default.companyID, Properties.Settings.Default.userID);
             string json = JsonConvert.SerializeObject(newData);
