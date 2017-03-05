@@ -9,8 +9,7 @@
     <StackLayout Spacing="0" x:Name="layout">
       <Button Text="StackLayout" VerticalOptions="Start" HorizontalOptions="FillAndExpand" />
       <BoxView Color="#FFF724" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
-      <BoxView Color="#FF001F" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
-      <BoxView HeightRequest="75" Color="#1491CC" VerticalOptions="End" HorizontalOptions="FillAndExpand" />
+      <Label x:Name="testLabel" Text="Hi" HeightRequest="500" VerticalOptions="End" HorizontalOptions="FillAndExpand" />
     </StackLayout>
     
   </ContentPage.Content>

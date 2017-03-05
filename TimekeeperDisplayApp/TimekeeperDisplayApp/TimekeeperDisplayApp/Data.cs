@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TimekeeperDisplayApp
 {
-    class Data
+    public class Data
     {
         public string windowTitle;
         public DateTime time;

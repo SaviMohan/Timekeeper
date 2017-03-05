@@ -13,4 +13,6 @@ https://code.msdn.microsoft.com/windowsdesktop/InsertUpdateDeleteDisplay-26926e7
 Setting up a Xamarin App:
 https://msdn.microsoft.com/en-us/library/dn879698.aspx
 
+Xamarin UI Dev:
+https://developer.xamarin.com/guides/xamarin-forms/xaml/xaml-basics/getting_started_with_xaml/
 

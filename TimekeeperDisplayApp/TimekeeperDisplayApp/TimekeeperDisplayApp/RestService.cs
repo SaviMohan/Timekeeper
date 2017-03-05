@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TimekeeperDisplayApp
 {
-    class RestService
+    public class RestService
     {
         HttpClient client;
 
