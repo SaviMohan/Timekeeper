@@ -9,7 +9,6 @@ namespace TimekeeperDisplayApp
 {
     public partial class MainPage : ContentPage
     {
-        private List<Data> data;
 
         public MainPage(DataStorage myDataStorage)
         {
@@ -17,10 +16,10 @@ namespace TimekeeperDisplayApp
             updateAndDisplay(myDataStorage);
         }
 
-        public void displayData()
+        public void displayData(DataStorage myDataStorage)
         {
             string myString = "";
-            foreach (Data item in data)
+            foreach (Data item in myDataStorage.dataList)
             {
                 myString = myString + item.ToString() + "\n";
             }
@@ -29,9 +28,9 @@ namespace TimekeeperDisplayApp
 
         private async void updateAndDisplay(DataStorage myDataStorage)
         {
-            await updateData();
-            displayData();
-            foreach (Data item in data)
+            await updateData(myDataStorage);
+            displayData(myDataStorage);
+            foreach (Data item in myDataStorage.dataList)
             {
                 int pos = userExists(item, myDataStorage);
                 if (pos == -1)
@@ -50,10 +49,10 @@ namespace TimekeeperDisplayApp
 
         }
 
-        private async Task updateData()
+        private async Task updateData(DataStorage myDataStorage)
         {
             RestService myService = new RestService();
-            data = await myService.RefreshDataAsync();
+            myDataStorage.dataList = await myService.RefreshDataAsync();
         }
 
         private int userExists(Data myData, DataStorage myDataStorage)

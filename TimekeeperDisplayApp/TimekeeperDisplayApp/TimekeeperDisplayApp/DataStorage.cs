@@ -9,10 +9,12 @@ namespace TimekeeperDisplayApp
     public class DataStorage
     {
         public List<User> userList;
+        public List<Data> dataList;
 
         public DataStorage()
         {
             userList = new List<User>();
+            dataList = new List<Data>();
         }
     }
 }
