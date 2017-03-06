@@ -31,6 +31,22 @@ namespace TimekeeperDisplayApp
         {
             await updateData();
             displayData();
+            foreach (Data item in data)
+            {
+                int pos = userExists(item, myDataStorage);
+                if (pos == -1)
+                {
+                    myDataStorage.userList.Add(new TimekeeperDisplayApp.User(item, myDataStorage));
+                }
+                else
+                {
+                    myDataStorage.userList[pos].addToLog(item);
+                }
+            }
+            foreach (User user in myDataStorage.userList)
+            {
+                System.Diagnostics.Debug.WriteLine(user.ToString());
+            }
 
         }
 
@@ -39,5 +55,20 @@ namespace TimekeeperDisplayApp
             RestService myService = new RestService();
             data = await myService.RefreshDataAsync();
         }
+
+        private int userExists(Data myData, DataStorage myDataStorage)
+        {
+            int pos = 0;
+            foreach (User user in myDataStorage.userList)
+            {
+                if (user.userID == myData.userID)
+                {
+                    return pos;
+                }
+                pos++;         
+            }
+            return -1;
+        }
+
     }
 }

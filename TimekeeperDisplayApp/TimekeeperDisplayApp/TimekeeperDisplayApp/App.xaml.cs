@@ -9,7 +9,7 @@ namespace TimekeeperDisplayApp
 {
     public partial class App : Application
     {
-        public DataStorage myDataStorage;
+        public DataStorage myDataStorage = new DataStorage();
 
         public App()
         {

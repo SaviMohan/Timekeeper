@@ -20,6 +20,7 @@ namespace TimekeeperDisplayApp
             userID = uID;
             companyID = cID;
             dataStorage = myDataStorage;
+            applicationLog = new List<Data>();
         }
 
         public User(Data myData, DataStorage myDataStorage)
@@ -28,7 +29,23 @@ namespace TimekeeperDisplayApp
             userID = myData.userID;
             companyID = myData.companyID;
             dataStorage = myDataStorage;
+            applicationLog = new List<Data>();
             applicationLog.Add(myData);       
+        }
+
+        public void addToLog(Data myData)
+        {
+            applicationLog.Add(myData);
+        }
+
+        public override string ToString()
+        {
+            string returnString = "UserID: " + userID + ".";
+            foreach (Data data in applicationLog)
+            {
+                returnString = returnString + data.windowTitle;
+            }
+            return returnString;
         }
     }
 }
