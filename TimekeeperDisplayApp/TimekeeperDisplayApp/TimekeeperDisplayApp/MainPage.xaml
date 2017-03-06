@@ -7,7 +7,7 @@
   <ContentPage.Content>
     
     <StackLayout Spacing="0" x:Name="layout">
-      <Button Text="StackLayout" VerticalOptions="Start" HorizontalOptions="FillAndExpand" />
+            <Button Text="CLICK HERE!" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Clicked="OnButtonClicked" />
       <BoxView Color="#FFF724" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
       <Label x:Name="testLabel" Text="Loading" FontSize="20" HeightRequest="500" VerticalOptions="End" HorizontalOptions="FillAndExpand" />
     </StackLayout>
