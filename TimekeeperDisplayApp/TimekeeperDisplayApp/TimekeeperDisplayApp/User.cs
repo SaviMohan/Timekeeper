@@ -27,12 +27,12 @@ namespace TimekeeperDisplayApp
             userID = myData.userID;
             companyID = myData.companyID;
             applicationLog = new List<AppData>();
-            applicationLog.Add(new AppData(myData, myDataStorage.titleToName(myData.windowTitle)));       
+            addApplication(myData, myDataStorage);
         }
 
         public void addToLog(Data myData, DataStorage myDataStorage)
         {
-            applicationLog.Add(new AppData(myData, myDataStorage.titleToName(myData.windowTitle)));
+            addApplication(myData, myDataStorage);  
         }
 
         public override string ToString()
@@ -43,6 +43,22 @@ namespace TimekeeperDisplayApp
                 returnString = returnString + data.ToString();
             }
             return returnString;
+        }
+
+        public void addApplication(Data myData, DataStorage myDataStorage)
+        {
+            string appName = myDataStorage.titleToName(myData.windowTitle);
+            int pos = 0;
+            foreach (AppData application in applicationLog)
+            {
+                if (appName == application.name)
+                {
+                    application.timesList.Add(myData.time);
+                    return;
+                }
+                pos++;
+            }   
+            applicationLog.Add(new AppData(myData, appName));
         }
     }
 }
