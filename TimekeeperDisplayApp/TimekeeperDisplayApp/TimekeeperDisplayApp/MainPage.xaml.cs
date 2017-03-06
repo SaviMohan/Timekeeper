@@ -14,7 +14,7 @@ namespace TimekeeperDisplayApp
         public MainPage(DataStorage myDataStorage)
         {
             InitializeComponent();
-            updateAndDisplay();
+            updateAndDisplay(myDataStorage);
         }
 
         public void displayData()
@@ -27,10 +27,11 @@ namespace TimekeeperDisplayApp
             testLabel.Text = myString;
         }
 
-        private async void updateAndDisplay()
+        private async void updateAndDisplay(DataStorage myDataStorage)
         {
             await updateData();
             displayData();
+
         }
 
         private async Task updateData()

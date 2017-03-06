@@ -8,7 +8,7 @@ namespace TimekeeperDisplayApp
 {
     public class DataStorage
     {
-        List<User> userList;
+        public List<User> userList;
 
         public DataStorage()
         {
