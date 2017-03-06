@@ -38,6 +38,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AppData.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="DataStorage.cs" />
     <Compile Include="MainPage.xaml.cs">

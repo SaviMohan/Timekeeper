@@ -16,5 +16,14 @@ namespace TimekeeperDisplayApp
             userList = new List<User>();
             dataList = new List<Data>();
         }
+
+        public string titleToName(string title)
+        {
+            string name;
+
+            name = "hi";
+            return name;
+        }
+
     }
 }
