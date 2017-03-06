@@ -13,21 +13,27 @@ namespace TimekeeperDisplayApp
         public int companyID;
         public List<Data> applicationLog; 
 
-        public User(string inName, int uID, int cID) 
+        public User(string inName, int uID, int cID, DataStorage myDataStorage) 
         {
             name = inName;
             userID = uID;
             companyID = cID;
         }
 
-        public User(Data myData)
+        public User(Data myData, DataStorage myDataStorage)
         {
-            if 
-            name = "";
             userID = myData.userID;
             companyID = myData.companyID;
         }
 
+        public bool compareUsers(User otherUser)
+        {
+            if (this.userID == otherUser.userID)
+            {
+                return true;
+            }
+            return false;
+        }
         
     }
 }
