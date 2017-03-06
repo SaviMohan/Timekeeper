@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TimekeeperDisplayApp
 {
-    class AppData
+    public class AppData
     {
         public string name;
         public string classification;
@@ -19,6 +19,11 @@ namespace TimekeeperDisplayApp
             timesList.Add(myData.time);
             classification = "undefined";
             name = appName;
+        }
+
+        public override string ToString()
+        {
+            return name;
         }
     }
 }

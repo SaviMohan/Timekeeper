@@ -19,10 +19,30 @@ namespace TimekeeperDisplayApp
 
         public string titleToName(string title)
         {
-            string name;
-
-            name = "hi";
-            return name;
+            if (title.Contains("Mail"))
+            {
+                return "E-Mail";
+            }
+            else if (title.Contains("Facebook"))
+            {
+                return "Facebook";
+            }
+            else if (title.Contains("Windows Explorer")) 
+            {
+                return "Windows Explorer";
+            }
+            else if (title.Contains("cmd.exe"))
+            {
+                return "Command Prompt";
+            }
+            else if (title.Contains("Visual Studio"))
+            {
+                return "Visual Studio";
+            }
+            else
+            {
+                return "Other";
+            }          
         }
 
     }

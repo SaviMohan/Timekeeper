@@ -39,7 +39,7 @@ namespace TimekeeperDisplayApp
                 }
                 else
                 {
-                    myDataStorage.userList[pos].addToLog(item);
+                    myDataStorage.userList[pos].addToLog(item, myDataStorage);
                 }
             }
             foreach (User user in myDataStorage.userList)
