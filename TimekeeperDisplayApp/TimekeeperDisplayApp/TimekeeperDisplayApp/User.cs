@@ -13,9 +13,11 @@ namespace TimekeeperDisplayApp
         public int companyID;
         public List<Data> applicationLog; 
 
-        public User() 
+        public User(string inName, int uID, int cID) 
         {
-
+            name = inName;
+            userID = uID;
+            companyID = cID;
         }
 
         public User(Data myData)
