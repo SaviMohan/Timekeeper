@@ -14,10 +14,10 @@ namespace TimekeeperDisplayApp
         public MainPage()
         {
             InitializeComponent();
-            updateAndGet();
+            updateAndDisplay();
         }
 
-        public void printData()
+        public void displayData()
         {
             string myString = "";
             foreach (Data item in data)
@@ -27,20 +27,16 @@ namespace TimekeeperDisplayApp
             testLabel.Text = myString;
         }
 
-        private async void updateAndGet()
+        private async void updateAndDisplay()
         {
             await updateData();
-            printData();
+            displayData();
         }
 
         private async Task updateData()
         {
             RestService myService = new RestService();
             data = await myService.RefreshDataAsync();
-            foreach (Data item in data)
-            {
-                System.Diagnostics.Debug.WriteLine(item.ToString());
-            }
         }
     }
 }
