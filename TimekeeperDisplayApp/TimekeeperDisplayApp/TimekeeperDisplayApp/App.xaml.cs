@@ -9,12 +9,12 @@ namespace TimekeeperDisplayApp
 {
     public partial class App : Application
     {
-        private List<Data> data = new List<Data>();
+        public DataStorage myDataStorage;
 
         public App()
         {
             InitializeComponent();
-            MainPage = new TimekeeperDisplayApp.MainPage();
+            MainPage = new TimekeeperDisplayApp.MainPage(myDataStorage);
         }
 
         protected override void OnStart()

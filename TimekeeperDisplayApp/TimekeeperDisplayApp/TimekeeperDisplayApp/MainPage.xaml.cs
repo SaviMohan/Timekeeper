@@ -11,7 +11,7 @@ namespace TimekeeperDisplayApp
     {
         private List<Data> data;
 
-        public MainPage()
+        public MainPage(DataStorage myDataStorage)
         {
             InitializeComponent();
             updateAndDisplay();

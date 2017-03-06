@@ -22,7 +22,10 @@ namespace TimekeeperDisplayApp
 
         public User(Data myData)
         {
-
+            if 
+            name = "";
+            userID = myData.userID;
+            companyID = myData.companyID;
         }
 
         
