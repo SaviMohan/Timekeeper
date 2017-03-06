@@ -37,11 +37,12 @@ namespace TimekeeperDisplayApp
 
         public override string ToString()
         {
-            string returnString = "UserID: " + userID + ".";
+            string returnString = "UserID: " + userID + "\n";
             foreach (AppData data in applicationLog)
             {
                 returnString = returnString + data.ToString();
             }
+            returnString = returnString + "\n";
             return returnString;
         }
 
