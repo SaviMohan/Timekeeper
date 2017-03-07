@@ -7,9 +7,7 @@ using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Diagnostics;
-using SHDocVw;
-using System.IO;
-using NDde.Client;
+using System.Windows.Automation;
 
 namespace SystemTrayApp
 {
@@ -70,7 +68,6 @@ namespace SystemTrayApp
                 int difference = title.Length - 46;
                 titleShort = title.Substring(0, 46) + " / " + title.Substring(title.Length-46, 46);
             }
-
             Data newData = new Data(titleShort, Properties.Settings.Default.companyID, Properties.Settings.Default.userID);
             string json = JsonConvert.SerializeObject(newData);
             System.Diagnostics.Debug.WriteLine(json);
@@ -91,23 +88,30 @@ namespace SystemTrayApp
             IntPtr processID = Marshal.AllocHGlobal(100);
             GetWindowThreadProcessId(handle, processID);
             Process mainProcess = Process.GetProcessById(Marshal.ReadInt32(processID));
-            
+
             if (GetWindowText(handle, Buff, nChars) > 0)
             {
-                
+                string title = Buff.ToString();
                 if (mainProcess.MainModule.ModuleName == "Explorer.EXE")
                 {
-                    return Buff.ToString() + " - Windows Explorer";
+                    return title + " - Windows Explorer";
                 }
-                if (mainProcess.MainModule.ModuleName == "iexplore.EXE")
+                else if (mainProcess.MainModule.ModuleName == "iexplore.exe")
                 {
-                    return getURL(handle, Buff.ToString() + " - Internet Explorer");
+                    return getURL(mainProcess, handle, title + " - iexplore.exe");
                 }
-                if (mainProcess.MainModule.ModuleName == "firefox.EXE")
+                else if (mainProcess.MainModule.ModuleName == "chrome.exe")
                 {
-                    return getURL(handle, Buff.ToString() + " - Mozilla Firefox");
+                    return getURL(mainProcess, handle, title + " - chrome.exe");
                 }
-                return getURL(handle, Buff.ToString());
+                else if (mainProcess.MainModule.ModuleName == "firefox.exe")
+                {
+                    return getURL(mainProcess, handle, title + " - firefox.exe");
+                } 
+                else
+                {
+                    return title;
+                }                     
             }
             return "Nothing Detected";
         }
@@ -144,27 +148,36 @@ namespace SystemTrayApp
             }          
         }
 
-        [DllImport("user32.dll", SetLastError = true)]
-        static extern IntPtr FindWindowEx(IntPtr parentHandle, IntPtr childAfter, string className, IntPtr windowTitle);
-        [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, StringBuilder ClassName);
-
-        private static string getURL(IntPtr intPtr, string windowTitle)
+        private static string getURL(Process myProcess, IntPtr handle, string windowTitle)
         {
-            string temp = null;
-            if (windowTitle.Contains("Google Chrome"))
+            if (windowTitle.Contains("chrome.exe"))
             {
-
+                return extractURL(myProcess, handle, windowTitle, "Google Chrome");
             }
-            else if (windowTitle.Contains("Internet Explorer"))
+            else if (windowTitle.Contains("iexplore.exe"))
             {
-
+                return extractURL(myProcess, handle, windowTitle, "Internet Explorer");
             }
-            else if (windowTitle.Contains("Firefox"))
+            else if (windowTitle.Contains("firefox.exe"))
             {
-
+                return extractURL(myProcess, handle, windowTitle, "Mozilla Firefox");
             }
             return windowTitle;
+        }
+
+        private static string extractURL(Process myProcess, IntPtr handle, string windowTitle, string browser)
+        {
+            AutomationElement element = AutomationElement.FromHandle(handle);
+            if (element == null)
+                return "Unidentified Website - " + browser;
+            Condition conditions = new AndCondition(
+                new PropertyCondition(AutomationElement.ProcessIdProperty, myProcess.Id),
+                new PropertyCondition(AutomationElement.IsControlElementProperty, true),
+                new PropertyCondition(AutomationElement.IsContentElementProperty, true),
+                new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Edit));
+
+            AutomationElement elementx = element.FindFirst(TreeScope.Descendants, conditions);
+            return ((ValuePattern)elementx.GetCurrentPattern(ValuePattern.Pattern)).Current.Value as string + " - " + browser;
         }
     }
 }
