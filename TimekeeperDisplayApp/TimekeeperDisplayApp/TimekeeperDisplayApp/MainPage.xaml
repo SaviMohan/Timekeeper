@@ -3,14 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:TimekeeperDisplayApp"
              x:Class="TimekeeperDisplayApp.MainPage"
+             BackgroundColor="#000000"
              Title="StackLayout Demo">
   <ContentPage.Content>
-    
-    <StackLayout Spacing="0" x:Name="layout">
-            <Button Text="CLICK HERE!" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Clicked="OnButtonClicked" />
-      <BoxView Color="#FFF724" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
-      <Label x:Name="testLabel" Text="Loading" FontSize="20" HeightRequest="500" VerticalOptions="End" HorizontalOptions="FillAndExpand" />
-    </StackLayout>
-    
-  </ContentPage.Content>
+
+
+
+        <Grid RowSpacing="1" BackgroundColor="Black">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                
+            </Grid.ColumnDefinitions>
+            <Button Text="Users" BackgroundColor="Red" VerticalOptions="FillAndExpand" Clicked="OnButtonClicked" Grid.Row="1" Grid.Column="0" />
+            <Button Text="Applications" VerticalOptions="FillAndExpand" Clicked="OnButtonClicked" Grid.Row="2" Grid.Column="0" />
+            <Button Text="Trends" VerticalOptions="FillAndExpand" Clicked="OnButtonClicked" Grid.Row="3" Grid.Column="0" />
+            <Button Text="Scheduling" VerticalOptions="FillAndExpand" Clicked="OnButtonClicked" Grid.Row="4" Grid.Column="0" />
+            <Button Text="Options" VerticalOptions="FillAndExpand" Clicked="OnButtonClicked" Grid.Row="5" Grid.Column="0" />
+
+            <Label x:Name="testLabel" Text="Bottom Left" Grid.Row="1" Grid.Column="1" />
+            
+        </Grid>
+
+    </ContentPage.Content>
 </ContentPage>
