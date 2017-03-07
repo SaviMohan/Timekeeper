@@ -7,6 +7,9 @@ using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using SHDocVw;
+using System.IO;
+using NDde.Client;
 
 namespace SystemTrayApp
 {
@@ -50,9 +53,7 @@ namespace SystemTrayApp
             System.Timers.Timer bTimer = new System.Timers.Timer();
             bTimer.Elapsed += new ElapsedEventHandler(OnTimedEventTwo);
             bTimer.Interval = 30000;
-            bTimer.Enabled = true;      
-
-            System.Diagnostics.Debug.WriteLine("Timers started");     
+            bTimer.Enabled = true;       
         }
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
@@ -64,11 +65,12 @@ namespace SystemTrayApp
             string title = GetActiveWindowTitle();
             title = title.Replace("\"", "").Replace("'", "");
             string titleShort = title;
-            if (title.Length > 50)
+            if (title.Length > 92)
             {
                 int difference = title.Length - 46;
                 titleShort = title.Substring(0, 46) + " / " + title.Substring(title.Length-46, 46);
             }
+
             Data newData = new Data(titleShort, Properties.Settings.Default.companyID, Properties.Settings.Default.userID);
             string json = JsonConvert.SerializeObject(newData);
             System.Diagnostics.Debug.WriteLine(json);
@@ -92,11 +94,20 @@ namespace SystemTrayApp
             
             if (GetWindowText(handle, Buff, nChars) > 0)
             {
+                
                 if (mainProcess.MainModule.ModuleName == "Explorer.EXE")
                 {
                     return Buff.ToString() + " - Windows Explorer";
                 }
-                return Buff.ToString();
+                if (mainProcess.MainModule.ModuleName == "iexplore.EXE")
+                {
+                    return getURL(handle, Buff.ToString() + " - Internet Explorer");
+                }
+                if (mainProcess.MainModule.ModuleName == "firefox.EXE")
+                {
+                    return getURL(handle, Buff.ToString() + " - Mozilla Firefox");
+                }
+                return getURL(handle, Buff.ToString());
             }
             return "Nothing Detected";
         }
@@ -131,6 +142,29 @@ namespace SystemTrayApp
                 cmdDatabase.Connection.Close();
                 conDatabase.Close();
             }          
+        }
+
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern IntPtr FindWindowEx(IntPtr parentHandle, IntPtr childAfter, string className, IntPtr windowTitle);
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, StringBuilder ClassName);
+
+        private static string getURL(IntPtr intPtr, string windowTitle)
+        {
+            string temp = null;
+            if (windowTitle.Contains("Google Chrome"))
+            {
+
+            }
+            else if (windowTitle.Contains("Internet Explorer"))
+            {
+
+            }
+            else if (windowTitle.Contains("Firefox"))
+            {
+
+            }
+            return windowTitle;
         }
     }
 }
