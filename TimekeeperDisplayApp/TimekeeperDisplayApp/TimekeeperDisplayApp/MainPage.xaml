@@ -8,7 +8,7 @@
   <ContentPage.Content>    
         <Grid RowSpacing="0" BackgroundColor="#d9d9d9">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
+                <RowDefinition Height="120" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -23,9 +23,14 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <StackLayout x:Name="titleBar" Grid.Row="0" Grid.Column="0" BackgroundColor="#808080" Grid.ColumnSpan="6">
-            
-            </StackLayout>
+            <ContentView Padding="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" BackgroundColor="#666666">
+              <StackLayout x:Name="titleBar" BackgroundColor="#808080" Orientation="Horizontal" Padding="10">
+                <Image x:Name="logo" Source="images/timekeeperlarge.png" BackgroundColor="#808080" HeightRequest="100"/> 
+                <StackLayout BackgroundColor="#808080" Orientation="Vertical" Padding="10">
+                  <Label Text="TIMEKEEPER" FontSize="32" FontAttributes="Bold"/>
+                </StackLayout>
+              </StackLayout>
+            </ContentView>
             <ContentView Padding="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" BackgroundColor="#666666">
               <ContentView Padding="10" BackgroundColor="#808080">
                 <Image x:Name="users" Source="images/users.png" BackgroundColor="#808080"/>
