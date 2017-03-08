@@ -9,6 +9,12 @@ namespace TimekeeperDisplayApp
 {
     public partial class MainPage : ContentPage
     {
+        private bool usersSelected;
+        private bool usageSelected;
+        private bool trendsSelected;
+        private bool tasksSelected;
+        private bool optionsSelected;
+
         public MainPage(DataStorage myDataStorage)
         {
             InitializeComponent();
@@ -76,16 +82,86 @@ namespace TimekeeperDisplayApp
 
         private void addTapHandlers()
         {
-            var tapGestureRecognizer = new TapGestureRecognizer();
-            tapGestureRecognizer.Tapped += (s, e) =>
+            usersSelected = true;
+            usageSelected = false;
+            trendsSelected = false;
+            tasksSelected = false;
+            optionsSelected = false;
+
+            var tapUser = new TapGestureRecognizer();
+            tapUser.Tapped += (s, e) =>
             {
+                if (!usersSelected)
+                {
+                    usersSelected = true;
+                    usageSelected = false;
+                    trendsSelected = false;
+                    tasksSelected = false;
+                    optionsSelected = false;
+                }
                 Navigation.PushModalAsync(new Grid1());
             };
-            users.GestureRecognizers.Add(tapGestureRecognizer);
-            appsUsage.GestureRecognizers.Add(tapGestureRecognizer);
-            trends.GestureRecognizers.Add(tapGestureRecognizer);
-            tasks.GestureRecognizers.Add(tapGestureRecognizer);
-            options.GestureRecognizers.Add(tapGestureRecognizer);
+            users.GestureRecognizers.Add(tapUser);
+
+            var tapUsage = new TapGestureRecognizer();
+            tapUsage.Tapped += (s, e) =>
+            {
+                Navigation.PushModalAsync(new Grid1());
+                if (!usageSelected)
+                {
+                    usersSelected = false;
+                    usageSelected = true;
+                    trendsSelected = false;
+                    tasksSelected = false;
+                    optionsSelected = false;
+                }
+            };
+            appsUsage.GestureRecognizers.Add(tapUsage);
+
+            var tapTrends = new TapGestureRecognizer();
+            tapTrends.Tapped += (s, e) =>
+            {
+                if (!trendsSelected)
+                {
+                    usersSelected = false;
+                    usageSelected = false;
+                    trendsSelected = true;
+                    tasksSelected = false;
+                    optionsSelected = false;
+                }
+                Navigation.PushModalAsync(new Grid1());
+            };
+            trends.GestureRecognizers.Add(tapTrends);
+
+            var tapTasks = new TapGestureRecognizer();
+            tapTasks.Tapped += (s, e) =>
+            {
+                if (!tasksSelected)
+                {
+                    usersSelected = false;
+                    usageSelected = false;
+                    trendsSelected = false;
+                    tasksSelected = true;
+                    optionsSelected = false;
+                }
+                Navigation.PushModalAsync(new Grid1());
+            };
+            tasks.GestureRecognizers.Add(tapTasks);
+
+            var tapOptions = new TapGestureRecognizer();
+            tapOptions.Tapped += (s, e) =>
+            {
+                if (!optionsSelected)
+                {
+                    usersSelected = false;
+                    usageSelected = false;
+                    trendsSelected = false;
+                    tasksSelected = false;
+                    optionsSelected = true;
+                }
+                Navigation.PushModalAsync(new Grid1());
+            };
+            options.GestureRecognizers.Add(tapOptions);
         }
     }
 }
