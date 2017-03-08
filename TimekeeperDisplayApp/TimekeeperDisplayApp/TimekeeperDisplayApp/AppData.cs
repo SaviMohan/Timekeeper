@@ -8,10 +8,10 @@ namespace TimekeeperDisplayApp
 {
     public class AppData
     {
-        public string name;
-        public string classification;
-        public DateTime timeSpentOn;
-        public List<DateTime> timesList = new List<DateTime>();
+        private string name;
+        private string classification;
+        private DateTime timeSpentOn;
+        private List<DateTime> timesList = new List<DateTime>();
 
         public AppData(Data myData, string appName)
         {           
@@ -39,5 +39,41 @@ namespace TimekeeperDisplayApp
 
             return totalTime;
         }
+        #region GetAndSet
+        public string getName()
+        {
+            return name;
+        }
+
+        public void setName(string input)
+        {
+            name = input;
+        }
+
+        public string getClassification()
+        {
+            return classification;
+        }
+
+        public void setClassification(string input)
+        {
+            classification = input;
+        }
+
+        public DateTime getDateTime()
+        {
+            return timeSpentOn;
+        }
+
+        public void setDateTime(DateTime input)
+        {
+            timeSpentOn = input;
+        }
+
+        public void addToTimesList(DateTime input)
+        {
+            timesList.Add(input);
+        }
+        #endregion
     }
 }

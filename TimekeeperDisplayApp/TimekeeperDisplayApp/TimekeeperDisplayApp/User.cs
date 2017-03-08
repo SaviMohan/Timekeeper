@@ -8,10 +8,10 @@ namespace TimekeeperDisplayApp
 {
     public class User
     {
-        public string name;
-        public int userID;
-        public int companyID;
-        public List<AppData> applicationLog;
+        private string name;
+        private int userID;
+        private int companyID;
+        private List<AppData> applicationLog;
 
         public User(string inName, int uID, int cID, DataStorage myDataStorage) 
         {
@@ -52,14 +52,55 @@ namespace TimekeeperDisplayApp
             int pos = 0;
             foreach (AppData application in applicationLog)
             {
-                if (appName == application.name)
+                if (appName == application.getName())
                 {
-                    application.timesList.Add(myData.time);
+                    application.addToTimesList(myData.time);
                     return;
                 }
                 pos++;
             }   
             applicationLog.Add(new AppData(myData, appName));
         }
+        #region GetAndSet
+        public string getName()
+        {
+            return name;
+        }
+
+        public void setName(string input)
+        {
+            name = input;
+        }
+
+        public int getUserID()
+        {
+            return userID;
+        }
+
+        public void setUserID(int input)
+        {
+            userID = input;
+        }
+
+        public int getCompanyID()
+        {
+            return companyID;
+        }
+
+        public void setCompanyID(int input)
+        {
+            companyID = input;
+        }
+
+        public List<AppData> getApplicationLog()
+        {
+            return applicationLog;
+        }
+
+        public void setApplicationLog(List<AppData> input)
+        {
+            applicationLog = input;
+        }
+        #endregion
     }
 }

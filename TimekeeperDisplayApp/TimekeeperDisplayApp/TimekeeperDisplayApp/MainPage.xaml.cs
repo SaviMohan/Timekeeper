@@ -9,7 +9,6 @@ namespace TimekeeperDisplayApp
 {
     public partial class MainPage : ContentPage
     {
-
         public MainPage(DataStorage myDataStorage)
         {
             InitializeComponent();
@@ -20,32 +19,29 @@ namespace TimekeeperDisplayApp
         public void displayData(DataStorage myDataStorage)
         {
             string myString = "";
-            foreach (Data item in myDataStorage.dataList)
+            foreach (Data item in myDataStorage.getDataList())
             {
                 myString = myString + item.ToString() + "\n";
-            }
-            //testLabel.Text = myString;
-
-            
+            }      
         }
 
         private async void updateAndDisplay(DataStorage myDataStorage)
         {
             await updateData(myDataStorage);
             displayData(myDataStorage);
-            foreach (Data item in myDataStorage.dataList)
+            foreach (Data item in myDataStorage.getDataList())
             {
                 int pos = userExists(item, myDataStorage);
                 if (pos == -1)
                 {
-                    myDataStorage.userList.Add(new TimekeeperDisplayApp.User(item, myDataStorage));
+                    myDataStorage.addToUserList(new TimekeeperDisplayApp.User(item, myDataStorage));
                 }
                 else
                 {
-                    myDataStorage.userList[pos].addToLog(item, myDataStorage);
+                    myDataStorage.getUserList()[pos].addToLog(item, myDataStorage);
                 }
             }
-            foreach (User user in myDataStorage.userList)
+            foreach (User user in myDataStorage.getUserList())
             {
                 System.Diagnostics.Debug.WriteLine(user.ToString());
             }
@@ -55,15 +51,15 @@ namespace TimekeeperDisplayApp
         private async Task updateData(DataStorage myDataStorage)
         {
             RestService myService = new RestService();
-            myDataStorage.dataList = await myService.RefreshDataAsync();
+            myDataStorage.setDataList(await myService.RefreshDataAsync());
         }
 
         private int userExists(Data myData, DataStorage myDataStorage)
         {
             int pos = 0;
-            foreach (User user in myDataStorage.userList)
+            foreach (User user in myDataStorage.getUserList())
             {
-                if (user.userID == myData.userID)
+                if (user.getUserID() == myData.userID)
                 {
                     return pos;
                 }
@@ -72,12 +68,9 @@ namespace TimekeeperDisplayApp
             return -1;
         }
 
-        async void OnButtonClicked(object sender, EventArgs args)
+        private async void OnButtonClicked(object sender, EventArgs args)
         {
             Button button = (Button)sender;
-            //await DisplayAlert("Clicked!",
-                //"The button labeled '" + button.Text + "' has been clicked",
-                //"OK");
             await Navigation.PushModalAsync(new Grid1());
         }
 

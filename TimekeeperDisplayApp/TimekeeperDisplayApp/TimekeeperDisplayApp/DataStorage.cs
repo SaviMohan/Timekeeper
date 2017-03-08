@@ -8,8 +8,8 @@ namespace TimekeeperDisplayApp
 {
     public class DataStorage
     {
-        public List<User> userList;
-        public List<Data> dataList;
+        private List<User> userList;
+        private List<Data> dataList;
 
         public DataStorage()
         {
@@ -44,6 +44,36 @@ namespace TimekeeperDisplayApp
                 return "Other";
             }          
         }
+        #region GetAndSet
+        public List<User> getUserList()
+        {
+            return userList;
+        }
+        
+        public void addToUserList(User input)
+        {
+            userList.Add(input);
+        }
 
+        public void setUserList(List<User> input)
+        {
+            userList = input;
+        }
+
+        public List<Data> getDataList()
+        {
+            return dataList;
+        }
+
+        public void addToDataList(Data input)
+        {
+            dataList.Add(input);
+        }
+
+        public void setDataList(List<Data> input)
+        {
+            dataList = input;
+        }
+        #endregion
     }
 }

@@ -10,7 +10,7 @@ namespace TimekeeperDisplayApp
 {
     public class RestService
     {
-        HttpClient client;
+        private HttpClient client;
 
         public RestService()
         {
