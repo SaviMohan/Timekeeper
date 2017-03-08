@@ -23,8 +23,9 @@ namespace TimekeeperDisplayApp
             {
                 myString = myString + item.ToString() + "\n";
             }
-            testLabel.Text = myString;
-                        
+            //testLabel.Text = myString;
+
+            
         }
 
         private async void updateAndDisplay(DataStorage myDataStorage)
