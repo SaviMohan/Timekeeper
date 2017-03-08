@@ -19,7 +19,13 @@ namespace TimekeeperDisplayApp
 
         public string titleToName(string title)
         {
-            if (title.Contains("Mail"))
+            //swap for dictionary and for loop iteration
+
+            if (title.Contains("Outlook"))
+            {
+                return "E-Mail";
+            }
+            if (title.Contains("Gmail"))
             {
                 return "E-Mail";
             }
@@ -27,7 +33,7 @@ namespace TimekeeperDisplayApp
             {
                 return "Facebook";
             }
-            else if (title.Contains("Windows Explorer")) 
+            else if (title.Contains("Windows Explorer"))
             {
                 return "Windows Explorer";
             }
@@ -38,6 +44,30 @@ namespace TimekeeperDisplayApp
             else if (title.Contains("Visual Studio"))
             {
                 return "Visual Studio";
+            }
+            else if (title.Contains("9GAG"))
+            {
+                return "9GAG";
+            }
+            else if (title.Contains("YouTube"))
+            {
+                return "YouTube";
+            }
+            else if (title.Contains("Microsoft Word"))
+            {
+                return "Microsoft Word";
+            }
+            else if (title.Contains("Microsoft Excel"))
+            {
+                return "Microsoft Excel";
+            }
+            else if (title.Contains("Microsoft PowerPoint"))
+            {
+                return "Microsoft PowerPoint";
+            }
+            else if (title.Contains("Microsoft OneNote"))
+            {
+                return "Microsoft OneNote";
             }
             else
             {
