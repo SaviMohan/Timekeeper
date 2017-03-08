@@ -14,6 +14,7 @@ namespace TimekeeperDisplayApp
         {
             InitializeComponent();
             updateAndDisplay(myDataStorage);
+            addTapHandlers();
         }
 
         public void displayData(DataStorage myDataStorage)
@@ -80,8 +81,18 @@ namespace TimekeeperDisplayApp
             await Navigation.PushModalAsync(new Grid1());
         }
 
-        
-        
-
+        private void addTapHandlers()
+        {
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.Tapped += (s, e) =>
+            {
+                Navigation.PushModalAsync(new Grid1());
+            };
+            users.GestureRecognizers.Add(tapGestureRecognizer);
+            appsUsage.GestureRecognizers.Add(tapGestureRecognizer);
+            trends.GestureRecognizers.Add(tapGestureRecognizer);
+            tasks.GestureRecognizers.Add(tapGestureRecognizer);
+            options.GestureRecognizers.Add(tapGestureRecognizer);
+        }
     }
 }

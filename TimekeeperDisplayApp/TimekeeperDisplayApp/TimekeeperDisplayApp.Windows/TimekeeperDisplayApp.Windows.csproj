@@ -125,6 +125,13 @@
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="images\options.png" />
+    <Content Include="images\tasks.png" />
+    <Content Include="images\timekeeperlarge.png" />
+    <Content Include="images\timekeepersmall.png" />
+    <Content Include="images\trends.png" />
+    <Content Include="images\usage.png" />
+    <Content Include="images\users.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
