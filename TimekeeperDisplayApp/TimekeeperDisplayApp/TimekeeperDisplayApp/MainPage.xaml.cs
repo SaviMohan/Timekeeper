@@ -159,7 +159,14 @@ namespace TimekeeperDisplayApp
                     tasksSelected = false;
                     optionsSelected = true;
                 }
-                Navigation.PushModalAsync(new Grid1());
+                //Navigation.PushModalAsync(new Grid1());
+                BoxView boxView = new BoxView
+                {
+                    Color = Color.Blue,
+                    HorizontalOptions = LayoutOptions.FillAndExpand,
+                    VerticalOptions = LayoutOptions.FillAndExpand
+                };
+                testScroll.Content = boxView;
             };
             options.GestureRecognizers.Add(tapOptions);
         }
