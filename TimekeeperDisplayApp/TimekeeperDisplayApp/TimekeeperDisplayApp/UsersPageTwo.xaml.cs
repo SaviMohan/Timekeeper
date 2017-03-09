@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Xamarin.Forms;
+
+namespace TimekeeperDisplayApp
+{
+    public partial class UsersPageTwo : ContentPage
+    {
+        public UsersPageTwo(DataStorage myDataStorage, User user)
+        {
+            InitializeComponent();
+            userID.Text = "User " + user.getUserID() + ":";
+        }
+    }
+}

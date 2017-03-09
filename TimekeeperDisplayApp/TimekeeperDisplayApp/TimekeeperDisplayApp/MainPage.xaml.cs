@@ -9,17 +9,10 @@ namespace TimekeeperDisplayApp
 {
     public partial class MainPage : ContentPage
     {
-        private bool usersSelected;
-        private bool usageSelected;
-        private bool trendsSelected;
-        private bool tasksSelected;
-        private bool optionsSelected;
-
         public MainPage(DataStorage myDataStorage)
         {
             InitializeComponent();
-            updateAndDisplay(myDataStorage);
-            addTapHandlers(myDataStorage);
+            updateAndDisplay(myDataStorage);            
         }
 
         public void displayData(DataStorage myDataStorage)
@@ -34,7 +27,7 @@ namespace TimekeeperDisplayApp
         private async void updateAndDisplay(DataStorage myDataStorage)
         {
             await updateData(myDataStorage);
-            displayData(myDataStorage);
+            displayData(myDataStorage);            
             foreach (Data item in myDataStorage.getDataList())
             {
                 int pos = userExists(item, myDataStorage);
@@ -51,7 +44,7 @@ namespace TimekeeperDisplayApp
             {
                 System.Diagnostics.Debug.WriteLine(user.ToString());
             }
-
+            addTapHandlers(myDataStorage);
         }
 
         private async Task updateData(DataStorage myDataStorage)
@@ -82,13 +75,13 @@ namespace TimekeeperDisplayApp
 
         private void addTapHandlers(DataStorage myDataStorage)
         {
-            ContentPage initialPage = new TimekeeperDisplayApp.UsersPage(myDataStorage);
+            ContentPage initialPage = new TimekeeperDisplayApp.UsersPage(myDataStorage, pageHolder);
             pageHolder.Content = initialPage.Content;
 
             var tapUser = new TapGestureRecognizer();
             tapUser.Tapped += (s, e) =>
             {
-                ContentPage usersPage = new TimekeeperDisplayApp.UsersPage(myDataStorage);
+                ContentPage usersPage = new TimekeeperDisplayApp.UsersPage(myDataStorage, pageHolder);
                 pageHolder.Content = usersPage.Content;
             };
             users.GestureRecognizers.Add(tapUser);
