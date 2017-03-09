@@ -56,7 +56,7 @@
                 <Image x:Name="options" Source="images/options.png" BackgroundColor="#808080"/>
               </ContentView>
             </ContentView>
-            <ScrollView x:Name = "testScroll" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="5">
+            <ScrollView x:Name = "testScroll" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="5" Padding="0">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />

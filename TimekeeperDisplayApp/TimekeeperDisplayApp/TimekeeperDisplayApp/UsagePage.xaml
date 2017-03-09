@@ -4,10 +4,9 @@
              xmlns:local="clr-namespace:TimekeeperDisplayApp"
              x:Class="TimekeeperDisplayApp.UsagePage"
              BackgroundColor="#000000"
-             Title="StackLayout Usage">
+             Title="Timekeeper Usages">
   <ContentPage.Content>
     <StackLayout BackgroundColor="#000000">
-      <Button Text="Back" ></Button>
       <Label Text="Usage"></Label>
     </StackLayout>
   </ContentPage.Content>
