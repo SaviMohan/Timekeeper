@@ -19,7 +19,7 @@ namespace TimekeeperDisplayApp
         {
             InitializeComponent();
             updateAndDisplay(myDataStorage);
-            addTapHandlers();
+            addTapHandlers(myDataStorage);
         }
 
         public void displayData(DataStorage myDataStorage)
@@ -80,15 +80,15 @@ namespace TimekeeperDisplayApp
             await Navigation.PushModalAsync(new Grid1());
         }
 
-        private void addTapHandlers()
+        private void addTapHandlers(DataStorage myDataStorage)
         {
-            ContentPage initialPage = new TimekeeperDisplayApp.UsersPage();
+            ContentPage initialPage = new TimekeeperDisplayApp.UsersPage(myDataStorage);
             pageHolder.Content = initialPage.Content;
 
             var tapUser = new TapGestureRecognizer();
             tapUser.Tapped += (s, e) =>
             {
-                ContentPage usersPage = new TimekeeperDisplayApp.UsersPage();
+                ContentPage usersPage = new TimekeeperDisplayApp.UsersPage(myDataStorage);
                 pageHolder.Content = usersPage.Content;
             };
             users.GestureRecognizers.Add(tapUser);
