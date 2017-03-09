@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:TimekeeperDisplayApp"
              x:Class="TimekeeperDisplayApp.MainPage"
              BackgroundColor="#000000"
-             Title="StackLayout Demo">
+             Title="Timekeeper">
   <ContentPage.Content>    
         <Grid RowSpacing="0" BackgroundColor="#d9d9d9">
             <Grid.RowDefinitions>
@@ -56,23 +56,7 @@
                 <Image x:Name="options" Source="images/options.png" BackgroundColor="#808080"/>
               </ContentView>
             </ContentView>
-            <ScrollView x:Name = "testScroll" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="5">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Text="Top Left" Grid.Row="0" Grid.Column="0" />
-                    <Label Text="Top Right" Grid.Row="0" Grid.Column="1" />
-                    <Label Text="Bottom Left" Grid.Row="1" Grid.Column="0" />
-                    <Label Text="Bottom Right" Grid.Row="1" Grid.Column="1" />
-                </Grid>
-            </ScrollView>
-
+            <ContentView x:Name="pageHolder" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="5"></ContentView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

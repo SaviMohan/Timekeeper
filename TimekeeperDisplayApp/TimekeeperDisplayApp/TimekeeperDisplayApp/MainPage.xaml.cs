@@ -82,91 +82,46 @@ namespace TimekeeperDisplayApp
 
         private void addTapHandlers()
         {
-            usersSelected = true;
-            usageSelected = false;
-            trendsSelected = false;
-            tasksSelected = false;
-            optionsSelected = false;
             ContentPage initialPage = new TimekeeperDisplayApp.UsersPage();
-            testScroll.Content = initialPage.Content;
+            pageHolder.Content = initialPage.Content;
 
             var tapUser = new TapGestureRecognizer();
             tapUser.Tapped += (s, e) =>
             {
-                if (!usersSelected)
-                {
-                    usersSelected = true;
-                    usageSelected = false;
-                    trendsSelected = false;
-                    tasksSelected = false;
-                    optionsSelected = false;
-                } 
                 ContentPage usersPage = new TimekeeperDisplayApp.UsersPage();
-                testScroll.Content = usersPage.Content;
+                pageHolder.Content = usersPage.Content;
             };
             users.GestureRecognizers.Add(tapUser);
 
             var tapUsage = new TapGestureRecognizer();
             tapUsage.Tapped += (s, e) =>
             {
-                if (!usageSelected)
-                {
-                    usersSelected = false;
-                    usageSelected = true;
-                    trendsSelected = false;
-                    tasksSelected = false;
-                    optionsSelected = false;
-                }
                 ContentPage usagePage = new TimekeeperDisplayApp.UsagePage();
-                testScroll.Content = usagePage.Content;
+                pageHolder.Content = usagePage.Content;
             };
             appsUsage.GestureRecognizers.Add(tapUsage);
 
             var tapTrends = new TapGestureRecognizer();
             tapTrends.Tapped += (s, e) =>
             {
-                if (!trendsSelected)
-                {
-                    usersSelected = false;
-                    usageSelected = false;
-                    trendsSelected = true;
-                    tasksSelected = false;
-                    optionsSelected = false;
-                }
                 ContentPage trendsPage = new TimekeeperDisplayApp.TrendsPage();
-                testScroll.Content = trendsPage.Content;
+                pageHolder.Content = trendsPage.Content;
             };
             trends.GestureRecognizers.Add(tapTrends);
 
             var tapTasks = new TapGestureRecognizer();
             tapTasks.Tapped += (s, e) =>
             {
-                if (!tasksSelected)
-                {
-                    usersSelected = false;
-                    usageSelected = false;
-                    trendsSelected = false;
-                    tasksSelected = true;
-                    optionsSelected = false;
-                }
                 ContentPage tasksPage = new TimekeeperDisplayApp.TasksPage();
-                testScroll.Content = tasksPage.Content;
+                pageHolder.Content = tasksPage.Content;
             };
             tasks.GestureRecognizers.Add(tapTasks);
 
             var tapOptions = new TapGestureRecognizer();
             tapOptions.Tapped += (s, e) =>
             {
-                if (!optionsSelected)
-                {
-                    usersSelected = false;
-                    usageSelected = false;
-                    trendsSelected = false;
-                    tasksSelected = false;
-                    optionsSelected = true;
-                }
                 ContentPage optionsPage = new TimekeeperDisplayApp.OptionsPage();
-                testScroll.Content = optionsPage.Content;
+                pageHolder.Content = optionsPage.Content;
             };
             options.GestureRecognizers.Add(tapOptions);
         }
