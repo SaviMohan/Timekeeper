@@ -10,12 +10,14 @@ namespace TimekeeperDisplayApp
     {
         private List<User> userList;
         private List<Data> dataList;
+        private List<AppData> appList;
         private Dictionary<string, string> appsList;
 
         public DataStorage()
         {
             userList = new List<User>();
             dataList = new List<Data>();
+            appList = new List<AppData>();
             appsList = new Dictionary<string, string>();
             addAppsToList();
         }
@@ -59,6 +61,17 @@ namespace TimekeeperDisplayApp
             }
             Uri myUri = new Uri(title);
             return myUri.Host;
+        }
+
+        public void sumApps()
+        {
+            foreach (User user in userList)
+            {
+                foreach (AppData app in user.getApplicationLog())
+                {
+                    appList.Add(app);
+                }          
+            }
         }
 
         #region AddApps
@@ -113,6 +126,16 @@ namespace TimekeeperDisplayApp
         public void setDataList(List<Data> input)
         {
             dataList = input;
+        }
+
+        public List<AppData> getAppList()
+        {
+            return appList;
+        }
+
+        public void setAppList(List<AppData> input)
+        {
+            appList = input;
         }
         #endregion
     }
