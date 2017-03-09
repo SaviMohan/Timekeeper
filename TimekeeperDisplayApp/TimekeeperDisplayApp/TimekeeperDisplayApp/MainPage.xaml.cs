@@ -87,6 +87,8 @@ namespace TimekeeperDisplayApp
             trendsSelected = false;
             tasksSelected = false;
             optionsSelected = false;
+            ContentPage initialPage = new TimekeeperDisplayApp.UsersPage();
+            testScroll.Content = initialPage.Content;
 
             var tapUser = new TapGestureRecognizer();
             tapUser.Tapped += (s, e) =>
@@ -98,15 +100,15 @@ namespace TimekeeperDisplayApp
                     trendsSelected = false;
                     tasksSelected = false;
                     optionsSelected = false;
-                }
-                Navigation.PushModalAsync(new Grid1());
+                } 
+                ContentPage usersPage = new TimekeeperDisplayApp.UsersPage();
+                testScroll.Content = usersPage.Content;
             };
             users.GestureRecognizers.Add(tapUser);
 
             var tapUsage = new TapGestureRecognizer();
             tapUsage.Tapped += (s, e) =>
             {
-                Navigation.PushModalAsync(new Grid1());
                 if (!usageSelected)
                 {
                     usersSelected = false;
@@ -115,6 +117,8 @@ namespace TimekeeperDisplayApp
                     tasksSelected = false;
                     optionsSelected = false;
                 }
+                ContentPage usagePage = new TimekeeperDisplayApp.UsagePage();
+                testScroll.Content = usagePage.Content;
             };
             appsUsage.GestureRecognizers.Add(tapUsage);
 
@@ -129,7 +133,8 @@ namespace TimekeeperDisplayApp
                     tasksSelected = false;
                     optionsSelected = false;
                 }
-                Navigation.PushModalAsync(new Grid1());
+                ContentPage trendsPage = new TimekeeperDisplayApp.TrendsPage();
+                testScroll.Content = trendsPage.Content;
             };
             trends.GestureRecognizers.Add(tapTrends);
 
@@ -144,7 +149,8 @@ namespace TimekeeperDisplayApp
                     tasksSelected = true;
                     optionsSelected = false;
                 }
-                Navigation.PushModalAsync(new Grid1());
+                ContentPage tasksPage = new TimekeeperDisplayApp.TasksPage();
+                testScroll.Content = tasksPage.Content;
             };
             tasks.GestureRecognizers.Add(tapTasks);
 
@@ -159,14 +165,8 @@ namespace TimekeeperDisplayApp
                     tasksSelected = false;
                     optionsSelected = true;
                 }
-                //Navigation.PushModalAsync(new Grid1());
-                BoxView boxView = new BoxView
-                {
-                    Color = Color.Blue,
-                    HorizontalOptions = LayoutOptions.FillAndExpand,
-                    VerticalOptions = LayoutOptions.FillAndExpand
-                };
-                testScroll.Content = boxView;
+                ContentPage optionsPage = new TimekeeperDisplayApp.OptionsPage();
+                testScroll.Content = optionsPage.Content;
             };
             options.GestureRecognizers.Add(tapOptions);
         }
