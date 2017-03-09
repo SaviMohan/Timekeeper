@@ -10,70 +10,80 @@ namespace TimekeeperDisplayApp
     {
         private List<User> userList;
         private List<Data> dataList;
+        private Dictionary<string, string> appsList;
 
         public DataStorage()
         {
             userList = new List<User>();
             dataList = new List<Data>();
+            appsList = new Dictionary<string, string>();
+            addAppsToList();
         }
 
         public string titleToName(string title)
-        {
-            //swap for dictionary and for loop iteration
-
-            if (title.Contains("Outlook"))
+        {           
+            if (title.Contains(" - Google Chrome"))
             {
-                return "E-Mail";
+                title = title.Replace(" - Google Chrome", "");
+                return getDomain(title);
             }
-            if (title.Contains("Gmail"))
+            else if (title.Contains(" - Internet Explorer"))
             {
-                return "E-Mail";
+                title = title.Replace(" - Internet Explorer", "");
+                return getDomain(title);
             }
-            else if (title.Contains("Facebook"))
+            else if (title.Contains(" - Mozilla Firefox"))
             {
-                return "Facebook";
-            }
-            else if (title.Contains("Windows Explorer"))
-            {
-                return "Windows Explorer";
-            }
-            else if (title.Contains("cmd.exe"))
-            {
-                return "Command Prompt";
-            }
-            else if (title.Contains("Visual Studio"))
-            {
-                return "Visual Studio";
-            }
-            else if (title.Contains("9GAG"))
-            {
-                return "9GAG";
-            }
-            else if (title.Contains("YouTube"))
-            {
-                return "YouTube";
-            }
-            else if (title.Contains("Microsoft Word"))
-            {
-                return "Microsoft Word";
-            }
-            else if (title.Contains("Microsoft Excel"))
-            {
-                return "Microsoft Excel";
-            }
-            else if (title.Contains("Microsoft PowerPoint"))
-            {
-                return "Microsoft PowerPoint";
-            }
-            else if (title.Contains("Microsoft OneNote"))
-            {
-                return "Microsoft OneNote";
+                title = title.Replace(" - Mozilla Firefox", "");
+                return getDomain(title);
             }
             else
             {
-                return "Other";
+                foreach (KeyValuePair<string, string> entry in appsList)
+                {
+                    if (title.Contains(entry.Key))
+                    {
+                        return entry.Value;
+                    }
+                }
+                return title;
             }          
         }
+
+        public string getDomain(string title)
+        {
+            title = title.Replace(" / ", "");
+            if (!title.Contains("https://"))
+            {
+                title = "https://" + title;
+            }
+            Uri myUri = new Uri(title);
+            return myUri.Host;
+        }
+
+        #region AddApps
+        private void addAppsToList()
+        {
+            addApp("cmd.exe", "Command Prompt");
+            addApp("Windows Explorer");
+            addApp("Visual Studio");
+            addApp("Word");
+            addApp("Excel");
+            addApp("PowerPoint");
+            addApp("OneNote");
+        }
+
+        public void addApp(string title)
+        {
+            appsList.Add(title, title);
+        }
+ 
+        public void addApp(string title, string output)
+        {
+            appsList.Add(title, output);
+        }
+        #endregion
+
         #region GetAndSet
         public List<User> getUserList()
         {
