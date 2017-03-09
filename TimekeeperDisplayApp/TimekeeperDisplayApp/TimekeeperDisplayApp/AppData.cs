@@ -10,20 +10,20 @@ namespace TimekeeperDisplayApp
     {
         private string name;
         private string classification;
-        private DateTime timeSpentOn;
+        private TimeSpan timeSpentOn;
         private List<DateTime> timesList = new List<DateTime>();
 
         public AppData(Data myData, string appName)
         {           
             timesList.Add(myData.time);
-            timeSpentOn = sumTimes();
             classification = "undefined";
             name = appName;
+            timeSpentOn = new TimeSpan(0, 0, 0);
         }
 
         public override string ToString()
         {
-            string appData = name + ": \n";
+            string appData = name + ": (" + timeSpentOn + " total) \n";
             foreach (DateTime time in timesList)
             {
                 appData = appData + "\t" + time.ToString() + "\n";
@@ -31,14 +31,6 @@ namespace TimekeeperDisplayApp
             return appData;
         }
 
-        public DateTime sumTimes()
-        {
-            //if we already have a time value just add the new time on
-            //else 
-            DateTime totalTime = new DateTime();
-
-            return totalTime;
-        }
         #region GetAndSet
         public string getName()
         {
@@ -60,12 +52,12 @@ namespace TimekeeperDisplayApp
             classification = input;
         }
 
-        public DateTime getDateTime()
+        public TimeSpan getTimeSpan()
         {
             return timeSpentOn;
         }
 
-        public void setDateTime(DateTime input)
+        public void setTimeSpan(TimeSpan input)
         {
             timeSpentOn = input;
         }
@@ -73,6 +65,7 @@ namespace TimekeeperDisplayApp
         public void addToTimesList(DateTime input)
         {
             timesList.Add(input);
+            timeSpentOn = timeSpentOn.Add(new TimeSpan(0, 0, 5));
         }
         #endregion
     }
