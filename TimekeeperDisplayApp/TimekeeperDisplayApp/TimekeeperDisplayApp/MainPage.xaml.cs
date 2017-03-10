@@ -134,6 +134,7 @@ namespace TimekeeperDisplayApp
                 resetToGrey();
                 optionsView.BackgroundColor = Color.FromHex("#0080ff");
                 options.BackgroundColor = Color.FromHex("#0080ff");
+                myDataStorage.reverse("applist");
             };
             options.GestureRecognizers.Add(tapOptions);
         }

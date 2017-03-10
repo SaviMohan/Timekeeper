@@ -13,6 +13,8 @@ namespace TimekeeperDisplayApp
         private List<AppData> appList;
         private Dictionary<string, string> appsList;
 
+        private String userLastSortedBy = "";
+
         public DataStorage()
         {
             userList = new List<User>();
@@ -98,6 +100,7 @@ namespace TimekeeperDisplayApp
             }
             return -1;
         }
+        #region Sorting
         /*This function sorts the users by the field specified by its input string (all lower case no spaces)
          * Defaults to sorting by name if no string match is found
          * */
@@ -106,21 +109,26 @@ namespace TimekeeperDisplayApp
             if (sortByString.Equals("name"))
             {
                 userList.Sort(delegate (User user1, User user2) { return user1.getName().CompareTo(user2.getName()); });
+                userLastSortedBy = sortByString;
             } else if (sortByString.Equals("userid"))
             {
                 userList.Sort(delegate (User user1, User user2) { return user1.getUserID().CompareTo(user2.getUserID()); });
             } else if (sortByString.Equals("companyid"))
             {
                 userList.Sort(delegate (User user1, User user2) { return user1.getCompanyID().CompareTo(user2.getCompanyID()); });
+                userLastSortedBy = sortByString;
             } else if (sortByString.Equals("mostused"))
             {
                 userList.Sort(delegate (User user1, User user2) { return user1.getMostUsed().getName().CompareTo(user2.getMostUsed().getName()); });
+                userLastSortedBy = sortByString;
             } else if (sortByString.Equals("productivetime"))
             {
                 userList.Sort(delegate (User user1, User user2) { return user1.getProductiveTime().CompareTo(user2.getProductiveTime()); });
+                userLastSortedBy = sortByString;
             } else if (sortByString.Equals("unproductivetime"))
             {
                 userList.Sort(delegate (User user1, User user2) { return user1.getUnproductiveTime().CompareTo(user2.getUnproductiveTime()); });
+                userLastSortedBy = sortByString;
             }
             else
             {
@@ -177,6 +185,22 @@ namespace TimekeeperDisplayApp
                 appList.Sort(delegate (AppData data1, AppData data2) { return data1.getName().CompareTo(data2.getName()); });
             }
         }
+
+        #endregion
+
+        public void reverse(String listToReverse)
+        {
+            if (listToReverse.Equals("userlist"))
+            {
+                userList.Reverse();
+            }
+            else if (listToReverse.Equals("applist"))
+            {
+                appList.Reverse();
+            }
+
+        }
+
         #region AddApps
         private void addAppsToList()
         {
@@ -201,6 +225,10 @@ namespace TimekeeperDisplayApp
         #endregion
 
         #region GetAndSet
+        public String getUserLastSortedBy()
+        {
+            return userLastSortedBy;
+        }
         public List<User> getUserList()
         {
             return userList;

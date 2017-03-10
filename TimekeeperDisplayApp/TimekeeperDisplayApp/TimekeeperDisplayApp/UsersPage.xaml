@@ -20,11 +20,11 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             
-            <Label Text="User" TextColor="Black" FontSize="20" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"/>
-            <Label Text="ID" TextColor="Black" FontSize="20" FontAttributes="Bold" Grid.Row="0" Grid.Column="1"/>
-            <Label Text="Productive Time Today" TextColor="Black" FontSize="20" FontAttributes="Bold" Grid.Row="0" Grid.Column="2"/>
-            <Label Text="Unproductive Time Today" TextColor="Black" FontSize="20" FontAttributes="Bold" Grid.Row="0" Grid.Column="3"/>
-            <Label Text="Most used application" TextColor="Black" FontSize="20" FontAttributes="Bold" Grid.Row="0" Grid.Column="4"/>
+            <Label x:Name="userLabel" Text="User" TextColor="Black" FontSize="20" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"/>
+            <Label x:Name="IDLabel" Text="ID" TextColor="Black" FontSize="20" FontAttributes="Bold" Grid.Row="0" Grid.Column="1"/>
+            <Label x:Name="productiveTimeTodayLabel" Text="Productive Time Today" TextColor="Black" FontSize="20" FontAttributes="Bold" Grid.Row="0" Grid.Column="2"/>
+            <Label x:Name="unproductiveTimeTodayLabel" Text="Unproductive Time Today" TextColor="Black" FontSize="20" FontAttributes="Bold" Grid.Row="0" Grid.Column="3"/>
+            <Label x:Name="mostUsedApplicationLabel" Text="Most used application" TextColor="Black" FontSize="20" FontAttributes="Bold" Grid.Row="0" Grid.Column="4"/>
 
             <ScrollView x:Name = "dataScroll" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="1">
                 <Grid x:Name = "dataGrid" RowSpacing="0" >

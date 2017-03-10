@@ -58,6 +58,49 @@ namespace TimekeeperDisplayApp
                 pageHolder.Content = newPage.Content;
             };
             myLabel.GestureRecognizers.Add(tapRow);
+
+            var tapUser = new TapGestureRecognizer();
+            tapUser.Tapped += (s, e) =>
+            {
+                if (myDataStorage.getUserLastSortedBy().Equals("name"))
+                {
+                    myDataStorage.reverse("userlist");
+                }
+                else
+                {
+                    myDataStorage.sortUsersBy("name");
+                }
+            };
+            userLabel.GestureRecognizers.Add(tapUser);
+
+            var tapID = new TapGestureRecognizer();
+            tapID.Tapped += (s, e) =>
+            {
+                if (myDataStorage.getUserLastSortedBy().Equals("userid"))
+                {
+                    myDataStorage.reverse("userlist");
+                }
+                else
+                {
+                    myDataStorage.sortUsersBy("userid");
+                }
+            };
+            IDLabel.GestureRecognizers.Add(tapID);
+
+            var tapProductiveTime = new TapGestureRecognizer();
+            tapID.Tapped += (s, e) =>
+            {
+                myDataStorage.sortUsersBy("productivetime");
+                if (myDataStorage.getUserLastSortedBy().Equals("productivetime"))
+                {
+                    myDataStorage.reverse("userlist");
+                }
+                else
+                {
+                    myDataStorage.sortUsersBy("productivetime");
+                }
+            };
+            productiveTimeTodayLabel.GestureRecognizers.Add(tapProductiveTime);
         }
     }
 }
