@@ -18,6 +18,7 @@ namespace TimekeeperDisplayApp
 
         public void initialiseUserDataTable(DataStorage myDataStorage, ContentView pageHolder)
         {
+            
             int rowCount = 0;
             foreach (User user in myDataStorage.getUserList())
             {
@@ -28,12 +29,22 @@ namespace TimekeeperDisplayApp
                 myLabels.Add(new Label { Text = user.getProductiveTime().ToString(), FontSize = 20, TextColor = Color.Black });
                 myLabels.Add(new Label { Text = user.getUnproductiveTime().ToString(), FontSize = 20, TextColor = Color.Black });
                 myLabels.Add(new Label { Text = user.getMostUsed().getName(), FontSize = 20, TextColor = Color.Black });
+
+
+
+                var rowDefinition = new RowDefinition();    //ensures the height of each row is constant
+                rowDefinition.Height = new GridLength(50.0);
+                dataGrid.RowDefinitions.Add(rowDefinition);
+
+
+
                 for (int i = 0; i < myLabels.Count; i++)
                 {
                     dataGrid.Children.Add(myLabels[i], i, rowCount);
                     addTapHandler(myLabels[i], myDataStorage, pageHolder, user);
-                    //dataGrid.RowDefinitions.
+                    
                 }
+                
                 rowCount++;
             }
         }
