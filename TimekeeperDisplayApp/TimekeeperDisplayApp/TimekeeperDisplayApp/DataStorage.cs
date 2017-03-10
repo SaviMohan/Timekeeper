@@ -101,24 +101,24 @@ namespace TimekeeperDisplayApp
         /*This function sorts the users by the field specified by its input string (all lower case no spaces)
          * Defaults to sorting by name if no string match is found
          * */
-        public void sortUsersBy(String sortBy)
+        public void sortUsersBy(String sortByString)
         {
-            if (sortBy.Equals("name"))
+            if (sortByString.Equals("name"))
             {
                 userList.Sort(delegate (User user1, User user2) { return user1.getName().CompareTo(user2.getName()); });
-            } else if (sortBy.Equals("userid"))
+            } else if (sortByString.Equals("userid"))
             {
                 userList.Sort(delegate (User user1, User user2) { return user1.getUserID().CompareTo(user2.getUserID()); });
-            } else if (sortBy.Equals("companyid"))
+            } else if (sortByString.Equals("companyid"))
             {
                 userList.Sort(delegate (User user1, User user2) { return user1.getCompanyID().CompareTo(user2.getCompanyID()); });
-            } else if (sortBy.Equals("mostused"))
+            } else if (sortByString.Equals("mostused"))
             {
                 userList.Sort(delegate (User user1, User user2) { return user1.getMostUsed().getName().CompareTo(user2.getMostUsed().getName()); });
-            } else if (sortBy.Equals("productivetime"))
+            } else if (sortByString.Equals("productivetime"))
             {
                 userList.Sort(delegate (User user1, User user2) { return user1.getProductiveTime().CompareTo(user2.getProductiveTime()); });
-            } else if (sortBy.Equals("unproductivetime"))
+            } else if (sortByString.Equals("unproductivetime"))
             {
                 userList.Sort(delegate (User user1, User user2) { return user1.getUnproductiveTime().CompareTo(user2.getUnproductiveTime()); });
             }
@@ -127,35 +127,55 @@ namespace TimekeeperDisplayApp
                 userList.Sort(delegate (User user1, User user2) { return user1.getName().CompareTo(user2.getName()); });
             }
         }
-        /*
-        public void sortUsersByName()
+
+        /*This function sorts data by the field specified by its input string (all fields lowercase)
+         * If a string match is not found it sorts by window title by default
+         * */
+        public void sortDataBy(String sortByString)
         {
-            userList.Sort(delegate (User user1, User user2) { return user1.getName().CompareTo(user2.getName()); });
+            if (sortByString.Equals("windowtitle"))
+            {
+                dataList.Sort(delegate (Data data1, Data data2) { return data1.windowTitle.CompareTo(data2.windowTitle); });
+            }else if (sortByString.Equals("time"))
+            {
+                dataList.Sort(delegate (Data data1, Data data2) { return data1.time.CompareTo(data2.time); });
+            }else if (sortByString.Equals("companyid"))
+            {
+                dataList.Sort(delegate (Data data1, Data data2) { return data1.companyID.CompareTo(data2.companyID); });
+            }else if (sortByString.Equals("userid"))
+            {
+                dataList.Sort(delegate (Data data1, Data data2) { return data1.userID.CompareTo(data2.userID); });
+            }else if (sortByString.Equals("dataid"))
+            {
+                dataList.Sort(delegate (Data data1, Data data2) { return data1.dataID.CompareTo(data2.dataID); });
+            } else
+            {
+                dataList.Sort(delegate (Data data1, Data data2) { return data1.windowTitle.CompareTo(data2.windowTitle); });
+            }
+
         }
-        public void sortUsersByUserID()
+
+        /*This function sorts the appList by the field specified by its input string (all fields lowercase)
+         * If a string match is not found it sorts by name
+         * */
+        public void sortAppListBy(String sortByString)
         {
-            userList.Sort(delegate (User user1, User user2) { return user1.getUserID().CompareTo(user2.getUserID()); });
-        }
-        public void sortUsersByCompanyID()
-        {
-            userList.Sort(delegate (User user1, User user2) { return user1.getCompanyID().CompareTo(user2.getCompanyID()); });
-        }
-        public void sortUsersByMostUsed()
-        {
-            userList.Sort(delegate (User user1, User user2) { return user1.getMostUsed().getName().CompareTo(user2.getMostUsed().getName()); });
-        }
-        public void sortUsersByProductiveTime()
-        {
-            userList.Sort(delegate (User user1, User user2) { return user1.getProductiveTime().CompareTo(user2.getProductiveTime()); });
-        }
-        public void sortUsersByUnproductiveTime()
-        {
-            userList.Sort(delegate (User user1, User user2) { return user1.getUnproductiveTime().CompareTo(user2.getUnproductiveTime()); });
-        }
-        */
-        public void sortDataByCompanyId()
-        {
-            dataList.Sort(delegate (Data data1, Data data2) { return data1.companyID.CompareTo(data2.companyID); });
+            if (sortByString.Equals("name"))
+            {
+                appList.Sort(delegate (AppData data1, AppData data2) { return data1.getName().CompareTo(data2.getName()); });
+            }
+            else if (sortByString.Equals("classification"))
+            {
+                appList.Sort(delegate (AppData data1, AppData data2) { return data1.getClassification().CompareTo(data2.getClassification()); });
+            }
+            else if (sortByString.Equals("timespan"))
+            {
+                appList.Sort(delegate (AppData data1, AppData data2) { return data1.getTimeSpan().CompareTo(data2.getTimeSpan()); });
+            }
+            else
+            {
+                appList.Sort(delegate (AppData data1, AppData data2) { return data1.getName().CompareTo(data2.getName()); });
+            }
         }
         #region AddApps
         private void addAppsToList()
