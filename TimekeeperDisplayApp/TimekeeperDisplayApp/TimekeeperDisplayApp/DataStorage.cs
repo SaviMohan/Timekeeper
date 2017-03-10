@@ -20,7 +20,6 @@ namespace TimekeeperDisplayApp
             appList = new List<AppData>();
             appsList = new Dictionary<string, string>();
             addAppsToList();
-            updateFromFile();
         }
 
         public string titleToName(string title)
@@ -70,14 +69,34 @@ namespace TimekeeperDisplayApp
             {
                 foreach (AppData app in user.getApplicationLog())
                 {
-                    appList.Add(app);
+                    int pos = appListContains(app);
+                    if (pos == -1)
+                    {
+                        appList.Add(new AppData(app.getData(), app.getName()));
+                    }
+                    else
+                    {
+                        foreach (DateTime data in app.getTimesList())
+                        {
+                            appList[pos].addToTimesList(data);
+                        }
+                    }
                 }          
             }
         }
 
-        public void updateFromFile()
+        public int appListContains(AppData appData)
         {
-            
+            int pos = 0;
+            foreach (AppData app in appList)
+            {
+                if (appData.getName() == app.getName())
+                {
+                    return pos;
+                }
+                pos++;
+            }
+            return -1;
         }
 
         #region AddApps

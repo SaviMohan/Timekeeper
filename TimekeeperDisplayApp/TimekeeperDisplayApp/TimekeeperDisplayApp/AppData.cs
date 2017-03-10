@@ -12,9 +12,11 @@ namespace TimekeeperDisplayApp
         private string classification;
         private TimeSpan timeSpentOn;
         private List<DateTime> timesList = new List<DateTime>();
+        private Data data;
 
         public AppData(Data myData, string appName)
-        {           
+        {
+            data = myData;
             timesList.Add(myData.time);
             classification = "Productive";
             name = appName;
@@ -66,6 +68,16 @@ namespace TimekeeperDisplayApp
         {
             timesList.Add(input);
             timeSpentOn = timeSpentOn.Add(new TimeSpan(0, 0, 5));
+        }
+
+        public List<DateTime> getTimesList()
+        {
+            return timesList;
+        }
+
+        public Data getData()
+        {
+            return data;
         }
         #endregion
     }
