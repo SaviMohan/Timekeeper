@@ -16,7 +16,7 @@ namespace TimekeeperDisplayApp
         public AppData(Data myData, string appName)
         {           
             timesList.Add(myData.time);
-            classification = "undefined";
+            classification = "Productive";
             name = appName;
             timeSpentOn = new TimeSpan(0, 0, 0);
         }
