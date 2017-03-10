@@ -87,6 +87,7 @@ namespace TimekeeperDisplayApp
                 resetToGrey();
                 usersView.BackgroundColor = Color.FromHex("#0080ff");
                 users.BackgroundColor = Color.FromHex("#0080ff");
+                myDataStorage.sortUsersBy("name");
             };
             users.GestureRecognizers.Add(tapUser);
 
@@ -98,6 +99,7 @@ namespace TimekeeperDisplayApp
                 resetToGrey();
                 appsView.BackgroundColor = Color.FromHex("#0080ff");
                 appsUsage.BackgroundColor = Color.FromHex("#0080ff");
+                myDataStorage.sortUsersBy("userid");
             };
             appsUsage.GestureRecognizers.Add(tapUsage);
 
@@ -109,6 +111,7 @@ namespace TimekeeperDisplayApp
                 resetToGrey();
                 trendsView.BackgroundColor = Color.FromHex("#0080ff");
                 trends.BackgroundColor = Color.FromHex("#0080ff");
+                myDataStorage.sortUsersBy("companyid");
             };
             trends.GestureRecognizers.Add(tapTrends);
 
@@ -120,6 +123,7 @@ namespace TimekeeperDisplayApp
                 resetToGrey();
                 tasksView.BackgroundColor = Color.FromHex("#0080ff");
                 tasks.BackgroundColor = Color.FromHex("#0080ff");
+                myDataStorage.sortUsersBy("productivetime");
             };
             tasks.GestureRecognizers.Add(tapTasks);
 
@@ -131,6 +135,7 @@ namespace TimekeeperDisplayApp
                 resetToGrey();
                 optionsView.BackgroundColor = Color.FromHex("#0080ff");
                 options.BackgroundColor = Color.FromHex("#0080ff");
+                myDataStorage.sortUsersBy("mostused");
             };
             options.GestureRecognizers.Add(tapOptions);
         }
