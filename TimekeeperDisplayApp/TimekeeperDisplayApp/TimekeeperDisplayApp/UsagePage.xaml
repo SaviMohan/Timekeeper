@@ -14,19 +14,15 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                
+                <ColumnDefinition Width="*" />               
             </Grid.ColumnDefinitions>
 
-            <Label Text="Application" TextColor="Black" FontSize="20" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"/>
-            <Label Text="Classification" TextColor="Black" FontSize="20" FontAttributes="Bold" Grid.Row="0" Grid.Column="1"/>
-            <Label Text="Company time spent today" TextColor="Black" FontSize="20" FontAttributes="Bold" Grid.Row="0" Grid.Column="2"/>
-            
+            <Label x:Name="nameLabel" Text="Application" TextColor="Black" FontSize="20" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"/>
+            <Label x:Name="classLabel" Text="Classification" TextColor="Black" FontSize="20" FontAttributes="Bold" Grid.Row="0" Grid.Column="1"/>
+            <Label x:Name="timeLabel" Text="Company time spent today" TextColor="Black" FontSize="20" FontAttributes="Bold" Grid.Row="0" Grid.Column="2"/>          
 
             <ScrollView x:Name = "dataScroll" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="1">
                 <Grid x:Name = "usageDataGrid"  >
-                    
-
 
                 </Grid>
             </ScrollView>

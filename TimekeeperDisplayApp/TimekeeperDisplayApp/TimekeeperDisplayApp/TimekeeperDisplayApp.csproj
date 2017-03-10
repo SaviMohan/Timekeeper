@@ -59,6 +59,9 @@
     <Compile Include="UsagePage.xaml.cs">
       <DependentUpon>UsagePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UsagePageTwo.xaml.cs">
+      <DependentUpon>UsagePageTwo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="User.cs" />
     <Compile Include="UsersPage.xaml.cs">
       <DependentUpon>UsersPage.xaml</DependentUpon>
@@ -143,6 +146,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="UsersPageTwo.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UsagePageTwo.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

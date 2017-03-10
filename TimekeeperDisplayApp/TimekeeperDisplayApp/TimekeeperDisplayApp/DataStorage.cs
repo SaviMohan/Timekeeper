@@ -14,6 +14,7 @@ namespace TimekeeperDisplayApp
         private Dictionary<string, string> appsList;
 
         private String userLastSortedBy = "";
+        private String appLastSortedBy = "";
 
         public DataStorage()
         {
@@ -135,6 +136,7 @@ namespace TimekeeperDisplayApp
             else
             {
                 userList.Sort(delegate (User user1, User user2) { return user1.getName().CompareTo(user2.getName()); });
+                userLastSortedBy = sortByString;
             }
         }
 
@@ -173,18 +175,22 @@ namespace TimekeeperDisplayApp
             if (sortByString.Equals("name"))
             {
                 appList.Sort(delegate (AppData data1, AppData data2) { return data1.getName().CompareTo(data2.getName()); });
+                appLastSortedBy = sortByString;
             }
             else if (sortByString.Equals("classification"))
             {
                 appList.Sort(delegate (AppData data1, AppData data2) { return data1.getClassification().CompareTo(data2.getClassification()); });
+                appLastSortedBy = sortByString;
             }
             else if (sortByString.Equals("timespan"))
             {
                 appList.Sort(delegate (AppData data1, AppData data2) { return data1.getTimeSpan().CompareTo(data2.getTimeSpan()); });
+                appLastSortedBy = sortByString;
             }
             else
             {
                 appList.Sort(delegate (AppData data1, AppData data2) { return data1.getName().CompareTo(data2.getName()); });
+                appLastSortedBy = sortByString;
             }
         }
 
@@ -231,6 +237,12 @@ namespace TimekeeperDisplayApp
         {
             return userLastSortedBy;
         }
+
+        public String getAppLastSortedBy()
+        {
+            return appLastSortedBy;
+        }
+
         public List<User> getUserList()
         {
             return userList;
