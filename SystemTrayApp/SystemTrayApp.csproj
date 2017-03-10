@@ -58,10 +58,10 @@
     </ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>57F82A9F51A2B37CA7B13F98BB189362399A0925</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>9473A4DAC4838AA90FC2D3FB2E6BB2A6DB41BDAF</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>SystemTrayApp_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>SystemTrayApp_2_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -143,6 +143,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="SystemTrayApp_1_TemporaryKey.pfx" />
+    <None Include="SystemTrayApp_2_TemporaryKey.pfx" />
     <None Include="SystemTrayApp_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
