@@ -13,7 +13,7 @@ namespace TimekeeperDisplayApp
         public UsersPage(DataStorage myDataStorage, ContentView pageHolder)
         {
             InitializeComponent();
-            initialiseUserDataTable(myDataStorage, pageHolder);
+            initialiseUserDataTable(myDataStorage, pageHolder);          
         }
 
         public void initialiseUserDataTable(DataStorage myDataStorage, ContentView pageHolder)
@@ -22,11 +22,12 @@ namespace TimekeeperDisplayApp
             foreach (User user in myDataStorage.getUserList())
             {
                 List<Label> myLabels = new List<Label>();
+                user.getStats();
                 myLabels.Add(new Label { Text = user.getName() + "test", FontSize = 20, TextColor = Color.Black });
-                myLabels.Add(new Label { Text = (user.getUserID()).ToString(), FontSize = 20, TextColor = Color.Black });
-                myLabels.Add(new Label { Text = (user.getCompanyID()).ToString(), FontSize = 20, TextColor = Color.Black });
-                myLabels.Add(new Label { Text = "This", FontSize = 20, TextColor = Color.Black });
-                myLabels.Add(new Label { Text = "This", FontSize = 20, TextColor = Color.Black });
+                myLabels.Add(new Label { Text = user.getUserID().ToString(), FontSize = 20, TextColor = Color.Black });
+                myLabels.Add(new Label { Text = user.getProductiveTime().ToString(), FontSize = 20, TextColor = Color.Black });
+                myLabels.Add(new Label { Text = user.getUnproductiveTime().ToString(), FontSize = 20, TextColor = Color.Black });
+                myLabels.Add(new Label { Text = user.getMostUsed().getName(), FontSize = 20, TextColor = Color.Black });
                 for (int i = 0; i < myLabels.Count; i++)
                 {
                     dataGrid.Children.Add(myLabels[i], i, rowCount);

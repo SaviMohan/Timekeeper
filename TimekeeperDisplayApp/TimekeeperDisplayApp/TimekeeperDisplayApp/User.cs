@@ -12,6 +12,9 @@ namespace TimekeeperDisplayApp
         private int userID;
         private int companyID;
         private List<AppData> applicationLog;
+        private TimeSpan productiveTime;
+        private TimeSpan unproductiveTime;
+        private AppData mostUsed;
 
         public User(string inName, int uID, int cID, DataStorage myDataStorage) 
         {
@@ -19,6 +22,7 @@ namespace TimekeeperDisplayApp
             userID = uID;
             companyID = cID;
             applicationLog = new List<AppData>();
+            getStats();
         }
 
         public User(Data myData, DataStorage myDataStorage)
@@ -61,6 +65,28 @@ namespace TimekeeperDisplayApp
             }   
             applicationLog.Add(new AppData(myData, appName));
         }
+
+        public void getStats()
+        {
+            mostUsed = applicationLog[0];
+            productiveTime = new TimeSpan(0, 0, 0);
+            unproductiveTime = new TimeSpan(0, 0, 0);
+            foreach (AppData app in applicationLog)
+            {
+                if (app.getTimeSpan() > mostUsed.getTimeSpan())
+                {
+                    mostUsed = app;
+                }
+                if (app.getClassification() == "Productive")
+                {
+                    productiveTime = productiveTime + app.getTimeSpan();
+                }
+                else if (app.getClassification() == "Unproductive")
+                {
+                    unproductiveTime = unproductiveTime + app.getTimeSpan();
+                }
+            }
+        }
         #region GetAndSet
         public string getName()
         {
@@ -100,6 +126,21 @@ namespace TimekeeperDisplayApp
         public void setApplicationLog(List<AppData> input)
         {
             applicationLog = input;
+        }
+
+        public TimeSpan getProductiveTime()
+        {
+            return productiveTime;
+        }
+
+        public TimeSpan getUnproductiveTime()
+        {
+            return unproductiveTime;
+        }
+
+        public AppData getMostUsed()
+        {
+            return mostUsed;
         }
         #endregion
     }

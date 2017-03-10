@@ -20,6 +20,7 @@ namespace TimekeeperDisplayApp
             appList = new List<AppData>();
             appsList = new Dictionary<string, string>();
             addAppsToList();
+            updateFromFile();
         }
 
         public string titleToName(string title)
@@ -72,6 +73,11 @@ namespace TimekeeperDisplayApp
                     appList.Add(app);
                 }          
             }
+        }
+
+        public void updateFromFile()
+        {
+            
         }
 
         #region AddApps
