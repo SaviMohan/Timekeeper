@@ -17,9 +17,7 @@ namespace TimekeeperDisplayApp
         }
 
         public void initialiseUsageDataTable(DataStorage myDataStorage, ContentView pageHolder)
-        {
-
-            
+        {      
             myDataStorage.sumApps();
             int rowCount = 0;
             foreach (AppData app in myDataStorage.getAppList())

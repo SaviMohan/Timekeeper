@@ -100,6 +100,7 @@ namespace TimekeeperDisplayApp
             }
             return -1;
         }
+
         #region Sorting
         /*This function sorts the users by the field specified by its input string (all lower case no spaces)
          * Defaults to sorting by name if no string match is found
@@ -113,6 +114,7 @@ namespace TimekeeperDisplayApp
             } else if (sortByString.Equals("userid"))
             {
                 userList.Sort(delegate (User user1, User user2) { return user1.getUserID().CompareTo(user2.getUserID()); });
+                userLastSortedBy = sortByString;
             } else if (sortByString.Equals("companyid"))
             {
                 userList.Sort(delegate (User user1, User user2) { return user1.getCompanyID().CompareTo(user2.getCompanyID()); });
@@ -186,8 +188,6 @@ namespace TimekeeperDisplayApp
             }
         }
 
-        #endregion
-
         public void reverse(String listToReverse)
         {
             if (listToReverse.Equals("userlist"))
@@ -200,6 +200,7 @@ namespace TimekeeperDisplayApp
             }
 
         }
+        #endregion
 
         #region AddApps
         private void addAppsToList()
@@ -211,6 +212,7 @@ namespace TimekeeperDisplayApp
             addApp("Excel");
             addApp("PowerPoint");
             addApp("OneNote");
+            addApp("Notepad++");
         }
 
         public void addApp(string title)
