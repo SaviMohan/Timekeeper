@@ -77,12 +77,16 @@ namespace TimekeeperDisplayApp
         {
             ContentPage initialPage = new TimekeeperDisplayApp.UsersPage(myDataStorage, pageHolder);
             pageHolder.Content = initialPage.Content;
-
+            usersView.BackgroundColor = Color.FromHex("#0080ff");
+            users.BackgroundColor = Color.FromHex("#0080ff");
             var tapUser = new TapGestureRecognizer();
             tapUser.Tapped += (s, e) =>
             {
                 ContentPage usersPage = new TimekeeperDisplayApp.UsersPage(myDataStorage, pageHolder);
                 pageHolder.Content = usersPage.Content;
+                resetToGrey();
+                usersView.BackgroundColor = Color.FromHex("#0080ff");
+                users.BackgroundColor = Color.FromHex("#0080ff");
             };
             users.GestureRecognizers.Add(tapUser);
 
@@ -91,6 +95,9 @@ namespace TimekeeperDisplayApp
             {
                 ContentPage usagePage = new TimekeeperDisplayApp.UsagePage();
                 pageHolder.Content = usagePage.Content;
+                resetToGrey();
+                appsView.BackgroundColor = Color.FromHex("#0080ff");
+                appsUsage.BackgroundColor = Color.FromHex("#0080ff");
             };
             appsUsage.GestureRecognizers.Add(tapUsage);
 
@@ -99,6 +106,9 @@ namespace TimekeeperDisplayApp
             {
                 ContentPage trendsPage = new TimekeeperDisplayApp.TrendsPage();
                 pageHolder.Content = trendsPage.Content;
+                resetToGrey();
+                trendsView.BackgroundColor = Color.FromHex("#0080ff");
+                trends.BackgroundColor = Color.FromHex("#0080ff");
             };
             trends.GestureRecognizers.Add(tapTrends);
 
@@ -107,6 +117,9 @@ namespace TimekeeperDisplayApp
             {
                 ContentPage tasksPage = new TimekeeperDisplayApp.TasksPage();
                 pageHolder.Content = tasksPage.Content;
+                resetToGrey();
+                tasksView.BackgroundColor = Color.FromHex("#0080ff");
+                tasks.BackgroundColor = Color.FromHex("#0080ff");
             };
             tasks.GestureRecognizers.Add(tapTasks);
 
@@ -115,8 +128,24 @@ namespace TimekeeperDisplayApp
             {
                 ContentPage optionsPage = new TimekeeperDisplayApp.OptionsPage();
                 pageHolder.Content = optionsPage.Content;
+                resetToGrey();
+                optionsView.BackgroundColor = Color.FromHex("#0080ff");
+                options.BackgroundColor = Color.FromHex("#0080ff");
             };
             options.GestureRecognizers.Add(tapOptions);
+        }
+        private void resetToGrey()
+        {
+            usersView.BackgroundColor = Color.FromHex("#808080");
+            users.BackgroundColor = Color.FromHex("#808080");
+            appsView.BackgroundColor = Color.FromHex("#808080");
+            appsUsage.BackgroundColor = Color.FromHex("#808080");
+            trendsView.BackgroundColor = Color.FromHex("#808080");
+            trends.BackgroundColor = Color.FromHex("#808080");
+            tasksView.BackgroundColor = Color.FromHex("#808080");
+            tasks.BackgroundColor = Color.FromHex("#808080");
+            optionsView.BackgroundColor = Color.FromHex("#808080");
+            options.BackgroundColor = Color.FromHex("#808080");
         }
     }
 }
