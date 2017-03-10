@@ -93,7 +93,7 @@ namespace TimekeeperDisplayApp
             var tapUsage = new TapGestureRecognizer();
             tapUsage.Tapped += (s, e) =>
             {
-                ContentPage usagePage = new TimekeeperDisplayApp.UsagePage();
+                ContentPage usagePage = new TimekeeperDisplayApp.UsagePage(myDataStorage, pageHolder);
                 pageHolder.Content = usagePage.Content;
                 resetToGrey();
                 appsView.BackgroundColor = Color.FromHex("#0080ff");
