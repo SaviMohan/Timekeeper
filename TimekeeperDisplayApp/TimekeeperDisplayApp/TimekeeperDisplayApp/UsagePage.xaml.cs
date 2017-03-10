@@ -18,11 +18,11 @@ namespace TimekeeperDisplayApp
 
         public void initialiseUsageDataTable(DataStorage myDataStorage, ContentView pageHolder)
         {
+            myDataStorage.sumApps();
             int rowCount = 0;
             foreach (AppData app in myDataStorage.getAppList())
             {
                 List<Label> myLabels = new List<Label>();
-                myDataStorage.sumApps();
                 myLabels.Add(new Label { Text = app.getName() + "test", FontSize = 20, TextColor = Color.Black });
                 myLabels.Add(new Label { Text = app.getClassification().ToString(), FontSize = 20, TextColor = Color.Black });
                 myLabels.Add(new Label { Text = app.getTimeSpan().ToString(), FontSize = 20, TextColor = Color.Black });
