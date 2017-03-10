@@ -32,6 +32,7 @@ namespace TimekeeperDisplayApp
                 {
                     dataGrid.Children.Add(myLabels[i], i, rowCount);
                     addTapHandler(myLabels[i], myDataStorage, pageHolder, user);
+                    //dataGrid.RowDefinitions.
                 }
                 rowCount++;
             }
