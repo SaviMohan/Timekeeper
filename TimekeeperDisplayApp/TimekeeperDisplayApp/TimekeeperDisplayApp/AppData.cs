@@ -23,6 +23,15 @@ namespace TimekeeperDisplayApp
             timeSpentOn = new TimeSpan(0, 0, 0);
         }
 
+        public AppData(Data myData, string appName, TimeSpan myTimeSpan)
+        {
+            data = myData;
+            timesList.Add(myData.time);
+            classification = "Productive";
+            name = appName;
+            timeSpentOn = myTimeSpan;
+        }
+
         public override string ToString()
         {
             string appData = name + ": (" + timeSpentOn + " total) \n";

@@ -10,10 +10,36 @@ namespace TimekeeperDisplayApp
 {
     public partial class UsersPageTwo : ContentPage
     {
-        public UsersPageTwo(DataStorage myDataStorage, User user)
+        User user;
+        ContentView pageHolder;
+        DataStorage dataStorage;
+
+        public UsersPageTwo(DataStorage myDataStorage, User userIn, ContentView pageHolderIn)
         {
             InitializeComponent();
+            dataStorage = myDataStorage;
+            pageHolder = pageHolderIn;
+            user = userIn;
             userID.Text = "User " + user.getUserID() + ":";
+            if (user.getName() != "")
+            {
+                nameEntry.Text = user.getName();
+            } else
+            {
+                nameEntry.Placeholder = "John Smith";
+            }
         }
+
+        void OnTextChanged(object sender, EventArgs args)
+        {
+            user.setName(nameEntry.Text);
+            nameEntry.Text = user.getName();
+        }
+        /*
+        void OnButtonClicked(object sender, EventArgs args)
+        {
+            ContentPage newPage = new TimekeeperDisplayApp.UsersPage(dataStorage, pageHolder);
+            pageHolder.Content = newPage.Content;
+        }*/
     }
 }

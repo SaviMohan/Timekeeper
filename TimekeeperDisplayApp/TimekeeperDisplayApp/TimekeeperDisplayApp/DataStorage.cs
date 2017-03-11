@@ -68,6 +68,7 @@ namespace TimekeeperDisplayApp
 
         public void sumApps()
         {
+            appList = new List<AppData>();
             foreach (User user in userList)
             {
                 foreach (AppData app in user.getApplicationLog())
@@ -75,7 +76,7 @@ namespace TimekeeperDisplayApp
                     int pos = appListContains(app);
                     if (pos == -1)
                     {
-                        appList.Add(new AppData(app.getData(), app.getName()));
+                        appList.Add(new AppData(app.getData(), app.getName(), app.getTimeSpan()));
                     }
                     else
                     {
@@ -85,6 +86,10 @@ namespace TimekeeperDisplayApp
                         }
                     }
                 }          
+            }
+            foreach (AppData app in appList)
+            {
+                System.Diagnostics.Debug.WriteLine(app.getName() + ": " + app.getTimeSpan());
             }
         }
 

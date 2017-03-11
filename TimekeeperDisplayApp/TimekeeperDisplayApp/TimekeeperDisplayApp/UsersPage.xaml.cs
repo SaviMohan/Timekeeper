@@ -31,7 +31,12 @@ namespace TimekeeperDisplayApp
             {
                 List<Label> myLabels = new List<Label>();
                 user.getStats();
-                myLabels.Add(new Label { Text = user.getName() + "test", FontSize = 20, TextColor = Color.Black });
+                string name = user.getName();
+                if (name == "")
+                {
+                    name = "-";
+                }
+                myLabels.Add(new Label { Text = name, FontSize = 20, TextColor = Color.Black });
                 myLabels.Add(new Label { Text = user.getUserID().ToString(), FontSize = 20, TextColor = Color.Black });
                 myLabels.Add(new Label { Text = user.getProductiveTime().ToString(), FontSize = 20, TextColor = Color.Black });
                 myLabels.Add(new Label { Text = user.getUnproductiveTime().ToString(), FontSize = 20, TextColor = Color.Black });
@@ -56,7 +61,7 @@ namespace TimekeeperDisplayApp
             var tapRow = new TapGestureRecognizer();
             tapRow.Tapped += (s, e) =>
             {
-                ContentPage newPage = new TimekeeperDisplayApp.UsersPageTwo(myDataStorage, user);
+                ContentPage newPage = new TimekeeperDisplayApp.UsersPageTwo(myDataStorage, user, pageHolder);
                 pageHolder.Content = newPage.Content;
             };
             myLabel.GestureRecognizers.Add(tapRow);

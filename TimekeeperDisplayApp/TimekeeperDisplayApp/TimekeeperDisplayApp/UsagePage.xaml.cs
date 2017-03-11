@@ -13,6 +13,7 @@ namespace TimekeeperDisplayApp
         public UsagePage(DataStorage myDataStorage, ContentView pageHolder)
         {
             InitializeComponent();
+            myDataStorage.sumApps();
             myDataStorage.sortAppListBy("name");
             initialiseUsageDataTable(myDataStorage, pageHolder);
             addColumnTapHandlers(myDataStorage, pageHolder);
@@ -26,7 +27,6 @@ namespace TimekeeperDisplayApp
                 usageDataGrid.Children.RemoveAt(0);
             }
 
-            myDataStorage.sumApps();
             int rowCount = 0;
             foreach (AppData app in myDataStorage.getAppList())
             {
@@ -94,7 +94,7 @@ namespace TimekeeperDisplayApp
 
             var tapTime = new TapGestureRecognizer();
             tapTime.Tapped += (s, e) =>
-            {
+            {              
                 if (myDataStorage.getUserLastSortedBy().Equals("timespan"))
                 {
                     myDataStorage.reverse("applist");

@@ -6,8 +6,8 @@
              BackgroundColor="#000000"
              Title="Timekeeper Tasks">
   <ContentPage.Content>
-    <StackLayout BackgroundColor="#000000">
-      <Label Text="Tasks"></Label>
+    <StackLayout BackgroundColor="#d9d9d9">
+      <Label Text="Tasks" FontAttributes="Bold" FontSize="32" TextColor="Black"></Label>
     </StackLayout>
   </ContentPage.Content>
 </ContentPage>
