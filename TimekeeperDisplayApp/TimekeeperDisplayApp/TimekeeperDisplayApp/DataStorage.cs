@@ -76,7 +76,7 @@ namespace TimekeeperDisplayApp
                     int pos = appListContains(app);
                     if (pos == -1)
                     {
-                        appList.Add(new AppData(app.getData(), app.getName(), app.getTimeSpan()));
+                        appList.Add(new AppData(app.getData(), app.getName(), app.getTimeSpan(), app.getClassification()));
                     }
                     else
                     {
@@ -105,6 +105,20 @@ namespace TimekeeperDisplayApp
                 pos++;
             }
             return -1;
+        }
+
+        public void setAllApps(string name, string classification)
+        {
+            foreach (User user in userList)
+            {
+                foreach (AppData app in user.getApplicationLog())
+                {
+                    if (app.getName().Equals(name))
+                    {
+                        app.setClassification(classification);
+                    }
+                }
+            }
         }
 
         #region Sorting

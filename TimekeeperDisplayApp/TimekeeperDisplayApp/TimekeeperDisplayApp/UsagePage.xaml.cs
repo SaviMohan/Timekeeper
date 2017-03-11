@@ -54,7 +54,7 @@ namespace TimekeeperDisplayApp
             var tapRow = new TapGestureRecognizer();
             tapRow.Tapped += (s, e) =>
             {
-                ContentPage newPage = new TimekeeperDisplayApp.UsagePageTwo(myDataStorage, app);
+                ContentPage newPage = new TimekeeperDisplayApp.UsagePageTwo(myDataStorage, app, pageHolder);
                 pageHolder.Content = newPage.Content;
             };
             myLabel.GestureRecognizers.Add(tapRow);

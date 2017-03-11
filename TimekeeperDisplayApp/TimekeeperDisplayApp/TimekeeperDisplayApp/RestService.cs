@@ -62,5 +62,19 @@ namespace TimekeeperDisplayApp
             }
             return dataList;
         }
+
+        public async Task SaveTodoItemAsync(AppToSend item)
+        {
+            var json = JsonConvert.SerializeObject(item);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = null;
+            response = await client.PostAsync("http://timekeeperapi.azurewebsites.net/api.php/table4", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                System.Diagnostics.Debug.WriteLine("Successfully saved");
+            }
+        }
     }
 }
