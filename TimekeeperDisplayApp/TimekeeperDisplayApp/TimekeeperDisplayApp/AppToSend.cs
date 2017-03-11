@@ -16,5 +16,11 @@ namespace TimekeeperDisplayApp
             name = myApp.getName();
             classification = myApp.getClassification();
         }
+
+        public AppToSend(string myName, string myClass)
+        {
+            name = myName;
+            classification = myClass;
+        }
     }
 }

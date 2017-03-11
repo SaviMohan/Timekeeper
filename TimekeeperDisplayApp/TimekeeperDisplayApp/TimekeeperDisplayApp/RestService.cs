@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -63,10 +64,10 @@ namespace TimekeeperDisplayApp
             return dataList;
         }
 
-        public async Task SaveTodoItemAsync(AppToSend item)
+        public async Task SaveAppAsync(AppToSend item)
         {
-            var json = JsonConvert.SerializeObject(item);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var json = await Task.Run(() => JsonConvert.SerializeObject(item));
+            var content = await Task.Run(() => new StringContent(json, Encoding.UTF8, "application/json"));
 
             HttpResponseMessage response = null;
             response = await client.PostAsync("http://timekeeperapi.azurewebsites.net/api.php/table4", content);

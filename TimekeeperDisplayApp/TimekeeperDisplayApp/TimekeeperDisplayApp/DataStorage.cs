@@ -87,10 +87,6 @@ namespace TimekeeperDisplayApp
                     }
                 }          
             }
-            foreach (AppData app in appList)
-            {
-                System.Diagnostics.Debug.WriteLine(app.getName() + ": " + app.getTimeSpan());
-            }
         }
 
         public int appListContains(AppData appData)
@@ -119,6 +115,14 @@ namespace TimekeeperDisplayApp
                     }
                 }
             }
+            AppToSend myAppToSend = new AppToSend(name, classification);
+            setAppDatabase(myAppToSend);
+        }
+
+        public async void setAppDatabase(AppToSend item)
+        {
+            RestService myService = new RestService();
+            await myService.SaveAppAsync(item);
         }
 
         #region Sorting
