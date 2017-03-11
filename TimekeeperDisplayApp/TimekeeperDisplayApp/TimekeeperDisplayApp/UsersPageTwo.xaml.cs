@@ -20,7 +20,7 @@ namespace TimekeeperDisplayApp
             dataStorage = myDataStorage;
             pageHolder = pageHolderIn;
             user = userIn;
-            userID.Text = "User " + user.getUserID() + ":";
+            userID.Text = "User " + user.getUserID() + ": " + user.getName();
             if (user.getName() != "")
             {
                 nameEntry.Text = user.getName();
@@ -34,12 +34,13 @@ namespace TimekeeperDisplayApp
         {
             user.setName(nameEntry.Text);
             nameEntry.Text = user.getName();
+            userID.Text = "User " + user.getUserID() + ": " + user.getName();
         }
-        /*
+
         void OnButtonClicked(object sender, EventArgs args)
         {
             ContentPage newPage = new TimekeeperDisplayApp.UsersPage(dataStorage, pageHolder);
             pageHolder.Content = newPage.Content;
-        }*/
+        }
     }
 }

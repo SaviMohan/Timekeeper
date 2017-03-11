@@ -7,14 +7,12 @@
              Title="Timekeeper Users">
   <ContentPage.Content>
     <StackLayout BackgroundColor="#d9d9d9">
-      <StackLayout>
-        <Label x:Name="userID" TextColor="Black" FontSize="32" FontAttributes="Bold"></Label>
-        <Button Clicked="OnButtonClicked"></Button>
-      </StackLayout>    
+      <Label x:Name="userID" TextColor="Black" FontSize="32" FontAttributes="Bold"></Label>         
       <StackLayout x:Name="userLayout" Orientation="Horizontal">
         <Label Text="Enter Name: " TextColor="Black" FontSize="20" VerticalTextAlignment="Center"></Label>
         <Entry x:Name="nameEntry" Placeholder="John Smith" FontSize="20" TextColor="Black" TextChanged="OnTextChanged"></Entry>
-      </StackLayout>  
+      </StackLayout>
+      <Button Text="Back" Clicked="OnButtonClicked" BorderColor="Black" TextColor="Black" FontSize="20" ></Button>
     </StackLayout>
   </ContentPage.Content>
 </ContentPage>
