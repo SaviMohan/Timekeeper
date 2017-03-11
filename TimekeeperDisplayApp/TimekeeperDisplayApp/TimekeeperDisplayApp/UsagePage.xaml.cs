@@ -71,7 +71,7 @@ namespace TimekeeperDisplayApp
                 }
                 else
                 {
-                    myDataStorage.sortUsersBy("name");
+                    myDataStorage.sortAppListBy("name");
                 }
                 initialiseUsageDataTable(myDataStorage, pageHolder);
             };
@@ -86,7 +86,7 @@ namespace TimekeeperDisplayApp
                 }
                 else
                 {
-                    myDataStorage.sortUsersBy("classification");
+                    myDataStorage.sortAppListBy("classification");
                 }
                 initialiseUsageDataTable(myDataStorage, pageHolder);
             };
@@ -95,13 +95,13 @@ namespace TimekeeperDisplayApp
             var tapTime = new TapGestureRecognizer();
             tapTime.Tapped += (s, e) =>
             {              
-                if (myDataStorage.getUserLastSortedBy().Equals("timespan"))
+                if (myDataStorage.getAppLastSortedBy().Equals("timespan"))
                 {
                     myDataStorage.reverse("applist");
                 }
                 else
                 {
-                    myDataStorage.sortUsersBy("timespan");
+                    myDataStorage.sortAppListBy("timespan");
                 }
                 initialiseUsageDataTable(myDataStorage, pageHolder);
             };
