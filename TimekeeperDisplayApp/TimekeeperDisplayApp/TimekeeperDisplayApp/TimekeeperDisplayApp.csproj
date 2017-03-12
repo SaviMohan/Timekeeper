@@ -70,6 +70,7 @@
     <Compile Include="UsersPageTwo.xaml.cs">
       <DependentUpon>UsersPageTwo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserToSend.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainPage.xaml">

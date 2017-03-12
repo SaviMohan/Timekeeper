@@ -125,6 +125,18 @@ namespace TimekeeperDisplayApp
             await myService.SaveAppAsync(item);
         }
 
+        public void setAllUsers(string name, int userId)
+        {
+            foreach (User user in userList)
+            {
+                if (user.getUserID().Equals(userId))
+                {
+                    user.setName(name);
+                    System.Diagnostics.Debug.WriteLine(user.getUserID() + " set to have a name of: " + name);
+                }
+            }
+        }
+
         #region Sorting
         /*This function sorts the users by the field specified by its input string (all lower case no spaces)
          * Defaults to sorting by name if no string match is found
