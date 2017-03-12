@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace TimekeeperDisplayApp
 {
-    class UserToSend
+    public class UserToSend
     {
         public string name;
-        public string classification;
+        public int userId;
 
         public UserToSend()
         {
 
         }
 
-        public UserToSend(AppData myApp)
+        public UserToSend(String inputname, int inputUserId)
         {
-            name = myApp.getName();
-            classification = myApp.getClassification();
+            name = inputname;
+            userId = inputUserId;
         }
     }
 }

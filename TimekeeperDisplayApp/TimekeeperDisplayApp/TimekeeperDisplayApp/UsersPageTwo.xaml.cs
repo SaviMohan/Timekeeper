@@ -35,7 +35,7 @@ namespace TimekeeperDisplayApp
             user.setName(nameEntry.Text);
             nameEntry.Text = user.getName();
             userID.Text = "User " + user.getUserID() + ": " + user.getName();
-            dataStorage.setAllUsers(user.getName(), user.getUserID());
+            dataStorage.seAllUsers(user.getName(), user.getUserID());
         }
 
         void OnButtonClicked(object sender, EventArgs args)

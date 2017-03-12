@@ -125,7 +125,7 @@ namespace TimekeeperDisplayApp
             await myService.SaveAppAsync(item);
         }
 
-        public void setAllUsers(string name, int userId)
+        public void seAllUsers(string name, int userId)
         {
             foreach (User user in userList)
             {
@@ -135,6 +135,15 @@ namespace TimekeeperDisplayApp
                     System.Diagnostics.Debug.WriteLine(user.getUserID() + " set to have a name of: " + name);
                 }
             }
+            UserToSend myUserToSend = new UserToSend(name,userId);
+            setUsernameDatabase(myUserToSend);
+
+        }
+
+        public async void setUsernameDatabase(UserToSend item)
+        {
+            RestService myService = new TimekeeperDisplayApp.RestService();
+            await myService.SaveUsernameAsync(item);
         }
 
         #region Sorting
