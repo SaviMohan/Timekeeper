@@ -15,19 +15,9 @@ namespace TimekeeperDisplayApp
             updateAndDisplay(myDataStorage);            
         }
 
-        public void displayData(DataStorage myDataStorage)
-        {
-            string myString = "";
-            foreach (Data item in myDataStorage.getDataList())
-            {
-                myString = myString + item.ToString() + "\n";
-            }      
-        }
-
         private async void updateAndDisplay(DataStorage myDataStorage)
         {
-            await updateData(myDataStorage);
-            displayData(myDataStorage);            
+            await updateData(myDataStorage);        
             foreach (Data item in myDataStorage.getDataList())
             {
                 int pos = userExists(item, myDataStorage);
@@ -39,10 +29,6 @@ namespace TimekeeperDisplayApp
                 {
                     myDataStorage.getUserList()[pos].addToLog(item, myDataStorage);
                 }
-            }
-            foreach (User user in myDataStorage.getUserList())
-            {
-                System.Diagnostics.Debug.WriteLine(user.ToString());
             }
             addTapHandlers(myDataStorage);
         }

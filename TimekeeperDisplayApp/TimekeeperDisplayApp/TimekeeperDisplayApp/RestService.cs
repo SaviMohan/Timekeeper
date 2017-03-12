@@ -72,11 +72,6 @@ namespace TimekeeperDisplayApp
 
             HttpResponseMessage response = null;
             response = await client.PostAsync("http://timekeeperapi.azurewebsites.net/api.php/table4", content);
-
-            if (response.IsSuccessStatusCode)
-            {
-                System.Diagnostics.Debug.WriteLine("Successfully saved");
-            }
         }
 
         public async Task<List<AppToSend>> RefreshAppAsync()
