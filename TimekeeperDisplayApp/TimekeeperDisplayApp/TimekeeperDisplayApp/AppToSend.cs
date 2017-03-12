@@ -10,6 +10,11 @@ namespace TimekeeperDisplayApp
     {
         public string name;
         public string classification;
+
+        public AppToSend()
+        {
+
+        }
         
         public AppToSend(AppData myApp)
         {

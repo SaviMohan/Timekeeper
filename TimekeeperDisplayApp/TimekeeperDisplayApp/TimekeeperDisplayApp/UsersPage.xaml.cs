@@ -13,6 +13,7 @@ namespace TimekeeperDisplayApp
         public UsersPage(DataStorage myDataStorage, ContentView pageHolder)
         {
             InitializeComponent();
+            updateProductivity(myDataStorage);
             myDataStorage.sortUsersBy("name");
             initialiseUserDataTable(myDataStorage, pageHolder);
             addColumnTapHandlers(myDataStorage, pageHolder);   
@@ -54,6 +55,28 @@ namespace TimekeeperDisplayApp
                 rowCount++;
             }
         }
+        public async void updateProductivity(DataStorage myDataStorage)
+        {
+            RestService myService = new RestService();
+            List<AppToSend> myList = await myService.RefreshAppAsync();
+            foreach (AppToSend app in myList)
+            {
+                foreach (User user in myDataStorage.getUserList())
+                {
+                    System.Diagnostics.Debug.WriteLine(app.name);
+                    List<AppData> applications = user.getApplicationLog();
+                    foreach (AppData myAppData in applications)
+                    {
+                        
+                        if (myAppData.getName().Equals(app.name))
+                        {
+                            myAppData.setClassification(app.classification);
+                        }
+                    }
+                }
+            }
+            
+         }
 
         #region TapHandlers
         private void addTapHandler(Label myLabel, DataStorage myDataStorage, ContentView pageHolder, User user)

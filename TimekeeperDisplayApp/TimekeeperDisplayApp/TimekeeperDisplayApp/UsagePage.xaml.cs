@@ -13,6 +13,7 @@ namespace TimekeeperDisplayApp
         public UsagePage(DataStorage myDataStorage, ContentView pageHolder)
         {
             InitializeComponent();
+            updateProductivity();
             myDataStorage.sumApps();
             myDataStorage.sortAppListBy("name");
             initialiseUsageDataTable(myDataStorage, pageHolder);
@@ -21,6 +22,7 @@ namespace TimekeeperDisplayApp
 
         public void initialiseUsageDataTable(DataStorage myDataStorage, ContentView pageHolder)
         {
+
             int length = usageDataGrid.Children.Count();
             for (int i = 0; i < length; i++)
             {
@@ -47,7 +49,11 @@ namespace TimekeeperDisplayApp
                 rowCount++;
             }
         }
-
+        public async void updateProductivity()
+        {
+            RestService myService = new RestService();
+            await myService.RefreshAppAsync();
+        }
         #region TapHandlers
         private void addTapHandler(Label myLabel, DataStorage myDataStorage, ContentView pageHolder, AppData app)
         {
