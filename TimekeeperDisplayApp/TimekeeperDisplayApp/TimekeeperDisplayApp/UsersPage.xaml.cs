@@ -20,6 +20,7 @@ namespace TimekeeperDisplayApp
         public async void update(DataStorage myDataStorage, ContentView pageHolder)
         {
             await updateProductivity(myDataStorage);
+            await updateUsername(myDataStorage);
             myDataStorage.sortUsersBy("name");
             initialiseUserDataTable(myDataStorage, pageHolder);
         }
@@ -82,6 +83,24 @@ namespace TimekeeperDisplayApp
             return 0;
          }
 
+        public async Task<int> updateUsername(DataStorage myDataStorage)
+        {
+            RestService myService = new RestService();
+            List<UserToSend> myList = await myService.RefreshUsernameAsync();
+            System.Diagnostics.Debug.WriteLine(myList.Count);
+            foreach (UserToSend user in myList)
+            {
+                foreach (User existingUser in myDataStorage.getUserList())
+                {
+                    if (existingUser.getUserID().Equals(user.userId))
+                    {
+                        existingUser.setName(user.name);
+                    }
+                    existingUser.getStats();
+                } 
+            }
+            return 0;
+        }
         #region TapHandlers
         private void addTapHandler(Label myLabel, DataStorage myDataStorage, ContentView pageHolder, User user)
         {

@@ -82,6 +82,22 @@ namespace TimekeeperDisplayApp
             HttpResponseMessage response = null;
             response = await client.PostAsync("http://timekeeperapi.azurewebsites.net/api.php/table3", content);
         }
+
+        public async Task<List<UserToSend>> RefreshUsernameAsync()
+        {
+            List<UserToSend> items = new List<UserToSend>();
+            var response = await client.GetAsync("http://timekeeperapi.azurewebsites.net/api.php/table3");
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                items = extractUsernameToSend(content);
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine(response);
+            }
+            return items;
+        }
         public async Task<List<AppToSend>> RefreshAppAsync()
         {
             List<AppToSend> items = new List<AppToSend>();
@@ -126,5 +142,34 @@ namespace TimekeeperDisplayApp
             }
             return appToSendList;
         }
+        private List<UserToSend> extractUsernameToSend(string content)
+        {
+            int startPos;
+            int length;
+            string subString;
+            UserToSend myUserToSend;
+            List<UserToSend> userToSendList = new List<UserToSend>();
+            content = content.Remove(0, content.IndexOf("records"));
+
+            while (true)
+            {
+                if (content.IndexOf('{') != -1)
+                {
+                    startPos = content.IndexOf('{');
+                    length = content.IndexOf('}') - startPos + 1;
+                    subString = content.Substring(startPos, length);
+                    subString = subString.Replace("\\", "");
+                    myUserToSend = JsonConvert.DeserializeObject<UserToSend>(subString);
+                    userToSendList.Add(myUserToSend);
+                    content = content.Remove(startPos, length);
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return userToSendList;
+        }
     }
 }
+
