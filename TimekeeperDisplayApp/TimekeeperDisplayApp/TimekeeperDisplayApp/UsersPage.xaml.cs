@@ -67,15 +67,14 @@ namespace TimekeeperDisplayApp
                     List<AppData> applications = user.getApplicationLog();
                     foreach (AppData myAppData in applications)
                     {
-                        
                         if (myAppData.getName().Equals(app.name))
                         {
                             myAppData.setClassification(app.classification);
                         }
                     }
+                    user.getStats();
                 }
             }
-            
          }
 
         #region TapHandlers
