@@ -67,7 +67,7 @@ namespace TimekeeperDisplayApp
         public async Task SaveAppAsync(AppToSend item)
         {
             var json = await Task.Run(() => JsonConvert.SerializeObject(item));
-            var content = await Task.Run(() => new StringContent(json, Encoding.UTF8, "application/json"));
+            var content = await Task.Run(() => new StringContent("data="+ json, Encoding.UTF8, "application/json"));
 
             HttpResponseMessage response = null;
             response = await client.PostAsync("http://timekeeperapi.azurewebsites.net/api.php/table4", content);
