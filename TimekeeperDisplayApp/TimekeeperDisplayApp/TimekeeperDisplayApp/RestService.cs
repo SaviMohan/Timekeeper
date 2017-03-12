@@ -64,10 +64,11 @@ namespace TimekeeperDisplayApp
             return dataList;
         }
 
+
         public async Task SaveAppAsync(AppToSend item)
         {
             var json = await Task.Run(() => JsonConvert.SerializeObject(item));
-            var content = await Task.Run(() => new StringContent(json, Encoding.UTF8, "application/json"));
+            var content = await Task.Run(() => new StringContent("data="+ json, Encoding.UTF8, "application/json"));
 
             HttpResponseMessage response = null;
             response = await client.PostAsync("http://timekeeperapi.azurewebsites.net/api.php/table4", content);
@@ -76,6 +77,51 @@ namespace TimekeeperDisplayApp
             {
                 System.Diagnostics.Debug.WriteLine("Successfully saved");
             }
+        }
+
+        public async Task<List<AppToSend>> RefreshAppAsync()
+        {
+            List<AppToSend> items = new List<AppToSend>();
+            var response = await client.GetAsync("http://timekeeperapi.azurewebsites.net/api.php/table4");
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                items = extractAppToSend(content);
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine(response);
+            }
+            return items;
+        }
+
+        private List<AppToSend> extractAppToSend(string content)
+        {
+            int startPos;
+            int length;
+            string subString;
+            AppToSend myAppToSend;
+            List<AppToSend> appToSendList = new List<AppToSend>();
+            content = content.Remove(0, content.IndexOf("records"));
+
+            while (true)
+            {
+                if (content.IndexOf('{') != -1)
+                {
+                    startPos = content.IndexOf('{');
+                    length = content.IndexOf('}') - startPos + 1;
+                    subString = content.Substring(startPos, length);
+                    subString = subString.Replace("\\", "");
+                    myAppToSend = JsonConvert.DeserializeObject<AppToSend>(subString);
+                    appToSendList.Add(myAppToSend);
+                    content = content.Remove(startPos, length);
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return appToSendList;
         }
     }
 }
