@@ -30,7 +30,7 @@ namespace TimekeeperDisplayApp
             }
         }
 
-        void OnTextChanged(object sender, EventArgs args)
+        void onCompleted(object sender, EventArgs args)
         {
             user.setName(nameEntry.Text);
             nameEntry.Text = user.getName();

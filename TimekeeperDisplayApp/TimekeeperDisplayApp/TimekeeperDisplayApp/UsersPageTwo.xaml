@@ -10,7 +10,7 @@
       <Label x:Name="userID" TextColor="Black" FontSize="32" FontAttributes="Bold"></Label>         
       <StackLayout x:Name="userLayout" Orientation="Horizontal">
         <Label Text="Enter Name: " TextColor="Black" FontSize="20" VerticalTextAlignment="Center"></Label>
-        <Entry x:Name="nameEntry" Placeholder="John Smith" FontSize="20" TextColor="Black" TextChanged="OnTextChanged"></Entry>
+        <Entry x:Name="nameEntry" Placeholder="John Smith" FontSize="20" TextColor="Black" Completed="onCompleted"></Entry>
       </StackLayout>
       <Button Text="Back" Clicked="OnButtonClicked" BorderColor="Black" TextColor="Black" FontSize="20" ></Button>
     </StackLayout>
