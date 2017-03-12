@@ -78,7 +78,6 @@ namespace TimekeeperDisplayApp
         {
             var json = await Task.Run(() => JsonConvert.SerializeObject(item));
             var content = await Task.Run(() => new StringContent("data=" + json, Encoding.UTF8, "application/json"));
-            System.Diagnostics.Debug.WriteLine(content.ToString());
             HttpResponseMessage response = null;
             response = await client.PostAsync("http://timekeeperapi.azurewebsites.net/api.php/table3", content);
         }

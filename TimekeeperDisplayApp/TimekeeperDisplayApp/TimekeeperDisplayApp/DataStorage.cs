@@ -132,7 +132,6 @@ namespace TimekeeperDisplayApp
                 if (user.getUserID().Equals(userId))
                 {
                     user.setName(name);
-                    System.Diagnostics.Debug.WriteLine(user.getUserID() + " set to have a name of: " + name);
                 }
             }
             UserToSend myUserToSend = new UserToSend(name,userId);

@@ -87,7 +87,6 @@ namespace TimekeeperDisplayApp
         {
             RestService myService = new RestService();
             List<UserToSend> myList = await myService.RefreshUsernameAsync();
-            System.Diagnostics.Debug.WriteLine(myList.Count);
             foreach (UserToSend user in myList)
             {
                 foreach (User existingUser in myDataStorage.getUserList())
