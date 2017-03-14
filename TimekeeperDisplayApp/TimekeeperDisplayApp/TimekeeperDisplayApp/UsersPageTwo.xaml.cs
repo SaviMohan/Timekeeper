@@ -24,10 +24,12 @@ namespace TimekeeperDisplayApp
             if (user.getName() != "")
             {
                 nameEntry.Text = user.getName();
-            } else
+            }
+            else
             {
                 nameEntry.Placeholder = "John Smith";
             }
+            addTapHandlers();
         }
 
         void onCompleted(object sender, EventArgs args)
@@ -38,10 +40,15 @@ namespace TimekeeperDisplayApp
             dataStorage.seAllUsers(user.getName(), user.getUserID());
         }
 
-        void OnButtonClicked(object sender, EventArgs args)
+        private void addTapHandlers()
         {
-            ContentPage newPage = new TimekeeperDisplayApp.UsersPage(dataStorage, pageHolder);
-            pageHolder.Content = newPage.Content;
+            var tapBack = new TapGestureRecognizer();
+            tapBack.Tapped += (s, e) =>
+            {
+                ContentPage newPage = new TimekeeperDisplayApp.UsersPage(dataStorage, pageHolder);
+                pageHolder.Content = newPage.Content;
+            };
+            back.GestureRecognizers.Add(tapBack);
         }
     }
 }

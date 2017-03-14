@@ -24,6 +24,8 @@ namespace TimekeeperDisplayApp
 
             classPicker.Items.Add("Productive");
             classPicker.Items.Add("Unproductive");
+
+            addTapHandlers();
         }
 
         void OnPickerChanged(object sender, EventArgs args)
@@ -46,6 +48,17 @@ namespace TimekeeperDisplayApp
         {
             ContentPage newPage = new TimekeeperDisplayApp.UsagePage(dataStorage, pageHolder);
             pageHolder.Content = newPage.Content;
+        }
+
+        private void addTapHandlers()
+        {
+            var tapBack = new TapGestureRecognizer();
+            tapBack.Tapped += (s, e) =>
+            {
+                ContentPage newPage = new TimekeeperDisplayApp.UsagePage(dataStorage, pageHolder);
+                pageHolder.Content = newPage.Content;
+            };
+            back.GestureRecognizers.Add(tapBack);
         }
     }
 }

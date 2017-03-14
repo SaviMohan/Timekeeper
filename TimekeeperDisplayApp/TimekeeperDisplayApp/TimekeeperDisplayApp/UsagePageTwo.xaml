@@ -6,13 +6,29 @@
              BackgroundColor="#000000"
              Title="Timekeeper Usage">
   <ContentPage.Content>
-    <StackLayout BackgroundColor="#d9d9d9">
-      <Label x:Name="appName" TextColor="Black" FontSize="32" FontAttributes="Bold"></Label>
-      <StackLayout x:Name="appLayout" Orientation="Horizontal">
-        <Label Text="Select Classification: " TextColor="Black" FontSize="20" VerticalTextAlignment="Center"></Label>
-        <Picker x:Name="classPicker" SelectedIndexChanged="OnPickerChanged"></Picker>
-      </StackLayout>
-      <Button Text="Back" Clicked="OnButtonClicked" BorderColor="Black" TextColor="Black" FontSize="20" ></Button>
-    </StackLayout>
+    <Grid RowSpacing="0" BackgroundColor="#d9d9d9">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="75" />
+        <RowDefinition Height="40" />
+        <RowDefinition Height="*" />
+        <RowDefinition Height="*" />
+        <RowDefinition Height="*" />
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="120" />
+        <ColumnDefinition Width="180" />
+        <ColumnDefinition Width="180" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="75" />
+      </Grid.ColumnDefinitions>
+      <Label x:Name="appName" TextColor="Black" FontSize="32" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></Label>
+      <ContentView x:Name="usersView" Padding="10" BackgroundColor="#d9d9d9" Grid.Row="0" Grid.Column="5">
+        <Image x:Name="back" Source="images/back.png" BackgroundColor="#d9d9d9"/>
+      </ContentView>
+      <Label Text="Select Classification: " TextColor="Black" FontSize="20" VerticalTextAlignment="Center" Grid.Row="1" Grid.Column="1"></Label>
+      <Picker x:Name="classPicker" SelectedIndexChanged="OnPickerChanged" Grid.Row="1" Grid.Column="2"></Picker>
+    </Grid>
   </ContentPage.Content>
 </ContentPage>

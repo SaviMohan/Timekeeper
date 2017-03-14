@@ -108,6 +108,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="images\back.png" />
     <Content Include="images\options.png" />
     <Content Include="images\tasks.png" />
     <Content Include="images\timekeeperlarge.png" />
