@@ -17,7 +17,7 @@ namespace TimekeeperDisplayApp
         public UsagePageTwo(DataStorage myDataStorage, AppData app, ContentView myPageHolder)
         {
             InitializeComponent();
-            appName.Text = app.getName() + ":";
+            appName.Text = app.getName();
             pageHolder = myPageHolder;
             dataStorage = myDataStorage;
             myApp = app;
