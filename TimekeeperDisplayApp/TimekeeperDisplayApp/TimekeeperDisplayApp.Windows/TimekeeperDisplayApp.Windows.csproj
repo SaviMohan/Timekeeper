@@ -131,6 +131,7 @@
     <Content Include="images\timekeeperlarge.png" />
     <Content Include="images\timekeepersmall.png" />
     <Content Include="images\trends.png" />
+    <Content Include="images\TrendsGraph.png" />
     <Content Include="images\usage.png" />
     <Content Include="images\users.png" />
   </ItemGroup>
